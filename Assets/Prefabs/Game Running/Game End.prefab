@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 3195959915119173472}
   - component: {fileID: 3150264247266567184}
   - component: {fileID: 3150264247266567190}
+  - component: {fileID: 4870858512678636134}
   m_Layer: 0
   m_Name: Game End
   m_TagString: Untagged
@@ -28,13 +29,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3150264247266567199}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &3100799200789842676
 MonoBehaviour:
@@ -142,6 +143,7 @@ MonoBehaviour:
   HoneyStolen: {fileID: 11400000, guid: c42ac6aeb7e92f1458f9767c8ffb6999, type: 2}
   ResearchProgress: {fileID: 11400000, guid: dfe9cf79ab308fa4590bcb660471cac3, type: 2}
   playersByConnection: {fileID: 11400000, guid: 727a441cdc88fb94daccad50d343bbc9, type: 2}
+  beePlayers: {fileID: 11400000, guid: 84d44d44fdc85d7438b94b1968970763, type: 2}
   waspPlayers: {fileID: 11400000, guid: 059709481d8b4074d883dc2146998f3c, type: 2}
   gameEndScreen: {fileID: 7185780510350613299, guid: 46326bca61ec2b74bb5f9c738d09b61e, type: 3}
   roundNum: {fileID: 11400000, guid: 73d0036268d51b046965ada8277e8c59, type: 2}
@@ -220,3 +222,32 @@ MonoBehaviour:
   visible: 0
   m_AssetId: 974755d2f8e297e41a7920aeb82fefb7
   hasSpawned: 0
+--- !u!114 &4870858512678636134
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3150264247266567199}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d992aefb126df148a88e425c1199171, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Events:
+  - {fileID: 11400000, guid: 78cfefec714f52749a9d7e5f2ac0fb22, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3150264247266567184}
+        m_TargetAssemblyTypeName: GameEnd, Assembly-CSharp
+        m_MethodName: OnSetupFinished
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2

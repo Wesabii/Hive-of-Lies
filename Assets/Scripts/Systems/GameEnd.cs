@@ -24,6 +24,8 @@ public class GameEnd : NetworkBehaviour
 
     [SerializeField] HivePlayerDictionary playersByConnection;
 
+    [SerializeField] HivePlayerSet beePlayers;
+
     [SerializeField] HivePlayerSet waspPlayers;
 
     [SerializeField] GameObject gameEndScreen;
@@ -59,6 +61,12 @@ public class GameEnd : NetworkBehaviour
         {
             if (waspPlayers.Value.Count == 0) BeesWin();
         };
+    }
+
+    public void OnSetupFinished()
+    {
+        HoneyNeededForWin.Value = beePlayers.Count + 2;
+        ResearchNeededForWin.Value = waspPlayers.Count + 3;
     }
 
     [Server]
