@@ -19,8 +19,8 @@ public class VictoryPointBar : NetworkBehaviour
     [Tooltip("How much honey stolen is needed for the Wasps to win")]
     [SerializeField] IntVariable honeyStolenNeeded;
 
-    [SyncVar] int wfNeeded;
-    [SyncVar] int hsNeeded;
+    [SyncVar(hook = nameof(BeePointsRequiredChanged))] int wfNeeded;
+    [SyncVar(hook = nameof(WaspPointsRequiredChanged))] int hsNeeded;
 
     [SerializeField] List<MissionEffect> beePointEffects;
     [SerializeField] List<MissionEffect> waspPointEffects;
@@ -35,20 +35,33 @@ public class VictoryPointBar : NetworkBehaviour
 
         waspPoints.AfterVariableChanged += (val) => AfterPointGained(waspPointEffects, val);
         beePoints.AfterVariableChanged += (val) => AfterPointGained(beePointEffects, val);
+
+        waspFactsNeeded.AfterVariableChanged += (val) => wfNeeded = val;
+        honeyStolenNeeded.AfterVariableChanged += (val) => hsNeeded = val;
     }
 
-    [ClientRpc]
-    public override void OnStartClient()
+    [Client]
+    private void BeePointsRequiredChanged(int oldVal, int newVal)
     {
-        CreateSegments(wfNeeded, waspFactBar, waspFactSegmentColour);
-        CreateSegments(hsNeeded, honeyStolenBar, honeyStolenSegmentColour);
+        CreateSegments(newVal, waspFactBar, waspFactSegmentColour);
+    }
+
+    [Client]
+    private void WaspPointsRequiredChanged(int oldVal, int newVal)
+    {
+        CreateSegments(newVal, honeyStolenBar, honeyStolenSegmentColour);
     }
 
     [Client]
     void CreateSegments(int num, Transform parent, Color colour)
     {
-        //loop until i < num - 1 because we already have one segment placed by default
-        for (int i = 0; i < num - 1; i++)
+
+        for (int i = 2; i < parent.childCount; i++)
+        {
+            Destroy(parent.GetChild(i).gameObject);
+        }
+
+        for (int i = 0; i < num; i++)
         {
             GameObject segment = new GameObject("Segment");
             Image image = segment.AddComponent<Image>();
