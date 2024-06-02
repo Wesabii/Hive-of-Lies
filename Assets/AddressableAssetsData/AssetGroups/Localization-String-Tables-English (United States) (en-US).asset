@@ -23,96 +23,112 @@ MonoBehaviour:
     m_SerializedLabels:
     - Locale-en-US
     - Preload
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: b66453b2ef059db4180213323d3e3bd9
     m_Address: Lobby_en-US
     m_ReadOnly: 1
     m_SerializedLabels:
     - Locale-en-US
     - Preload
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 99b302f263299bd46bbe96f9c26611d7
     m_Address: Roles_en-US
     m_ReadOnly: 1
     m_SerializedLabels:
     - Locale-en-US
     - Preload
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 8048949aa0dfe3440b13b5ade66185ee
     m_Address: Ordinal Numbers_en-US
     m_ReadOnly: 1
     m_SerializedLabels:
     - Locale-en-US
     - Preload
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: d4b4e6b6b41e1db49b42fe6e2700c06a
     m_Address: Multipliers_en-US
     m_ReadOnly: 1
     m_SerializedLabels:
     - Locale-en-US
     - Preload
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 011016683a8b4e04d808669bef7039dc
     m_Address: Mission Effects_en-US
     m_ReadOnly: 1
     m_SerializedLabels:
     - Locale-en-US
     - Preload
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 5cbcba6be38ec44468bba9075112beb9
     m_Address: Game Terms_en-US
     m_ReadOnly: 1
     m_SerializedLabels:
     - Locale-en-US
     - Preload
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: d6362fd4745c03a468e489d104169215
     m_Address: Verbs_en-US
     m_ReadOnly: 1
     m_SerializedLabels:
     - Locale-en-US
     - Preload
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 6255be758e60a2343b96733bc0dd92ec
     m_Address: Default Missions_en-US
     m_ReadOnly: 1
     m_SerializedLabels:
     - Locale-en-US
     - Preload
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 84e111ecdcd90cd49979221e7eb092c8
     m_Address: Main Game UI_en-US
     m_ReadOnly: 1
     m_SerializedLabels:
     - Locale-en-US
     - Preload
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: d6c74851de2eaed478a94ab915da89a3
     m_Address: Nouns_en-US
     m_ReadOnly: 1
     m_SerializedLabels:
     - Locale-en-US
     - Preload
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: d20c006c9a697344fb63578136a6db96
     m_Address: Game Modes_en-US
     m_ReadOnly: 1
     m_SerializedLabels:
     - Locale-en-US
     - Preload
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 9b76c21f16d69b740a90f5276961f152
     m_Address: Buzz Missions_en-US
     m_ReadOnly: 1
     m_SerializedLabels:
     - Locale-en-US
     - Preload
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 45772deb1bebc3045aadab7f3c985a01
     m_Address: Tutorial_en-US
     m_ReadOnly: 1
     m_SerializedLabels:
     - Locale-en-US
     - Preload
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: c48766ccb85a35f4d91a9bf33a840ccf
     m_Address: Misc Words_en-US
     m_ReadOnly: 1
     m_SerializedLabels:
     - Locale-en-US
     - Preload
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: a5b7935ca26134f4e95282c38154d50f
     m_Address: Target Hints_en-US
     m_ReadOnly: 1
     m_SerializedLabels:
     - Locale-en-US
     - Preload
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 1
   m_Settings: {fileID: 11400000, guid: afe534c31f37b454b9cc4a29fdb17247, type: 2}
   m_SchemaSet:
