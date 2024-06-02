@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   initialValue: 4
   currentValue: 4
-  Persistent: 1
+  Persistent: 0
   server: 1
   client: 0
   tooltip: How much research the Bees need to win the game
