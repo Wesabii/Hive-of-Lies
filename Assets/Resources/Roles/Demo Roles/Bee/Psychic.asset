@@ -39,8 +39,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: ecff655d9d8db1449807bd4625f3c20a, type: 2}
   - {fileID: 11400000, guid: 6f1c944c4f7991949a7854b4a3cdc0f5, type: 2}
   - {fileID: 11400000, guid: 6f1c944c4f7991949a7854b4a3cdc0f5, type: 2}
-  - {fileID: 11400000, guid: 6f1c944c4f7991949a7854b4a3cdc0f5, type: 2}
-  - {fileID: 11400000, guid: 6f1c944c4f7991949a7854b4a3cdc0f5, type: 2}
+  - {fileID: 11400000, guid: 786492d736f9eb04c86ff40fca24df94, type: 2}
+  - {fileID: 11400000, guid: 786492d736f9eb04c86ff40fca24df94, type: 2}
   <Abilities>k__BackingField:
   - {fileID: 5724992533383566400, guid: f691aaf909ffeed42a4eb2204f7584fd, type: 3}
   <PlayersRequired>k__BackingField: 0

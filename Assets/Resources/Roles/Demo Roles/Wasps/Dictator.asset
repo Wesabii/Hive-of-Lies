@@ -48,8 +48,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: ecff655d9d8db1449807bd4625f3c20a, type: 2}
   - {fileID: 11400000, guid: 6f1c944c4f7991949a7854b4a3cdc0f5, type: 2}
   - {fileID: 11400000, guid: 6f1c944c4f7991949a7854b4a3cdc0f5, type: 2}
-  - {fileID: 11400000, guid: 6f1c944c4f7991949a7854b4a3cdc0f5, type: 2}
-  - {fileID: 11400000, guid: 6f1c944c4f7991949a7854b4a3cdc0f5, type: 2}
+  - {fileID: 11400000, guid: 786492d736f9eb04c86ff40fca24df94, type: 2}
+  - {fileID: 11400000, guid: 786492d736f9eb04c86ff40fca24df94, type: 2}
   <Abilities>k__BackingField:
   - {fileID: 899694251160386601, guid: 15aa3f0230c2b3242b8d28e4d47bd514, type: 3}
   - {fileID: 4562022572875842080, guid: b33561f983781c94bbcda521301ddbf2, type: 3}

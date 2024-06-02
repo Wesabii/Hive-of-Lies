@@ -42,8 +42,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 6f1c944c4f7991949a7854b4a3cdc0f5, type: 2}
   - {fileID: 11400000, guid: 6f1c944c4f7991949a7854b4a3cdc0f5, type: 2}
   - {fileID: 11400000, guid: 6f1c944c4f7991949a7854b4a3cdc0f5, type: 2}
-  - {fileID: 11400000, guid: 6f1c944c4f7991949a7854b4a3cdc0f5, type: 2}
-  - {fileID: 11400000, guid: 6f1c944c4f7991949a7854b4a3cdc0f5, type: 2}
+  - {fileID: 11400000, guid: 786492d736f9eb04c86ff40fca24df94, type: 2}
+  - {fileID: 11400000, guid: 786492d736f9eb04c86ff40fca24df94, type: 2}
   <Abilities>k__BackingField: []
   <PlayersRequired>k__BackingField: 0
   <Sprite>k__BackingField: {fileID: 21300000, guid: 9f987bc44b10bfb428db901fc445c554, type: 3}
