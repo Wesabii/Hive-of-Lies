@@ -65,8 +65,8 @@ public class GameEnd : NetworkBehaviour
 
     public void OnSetupFinished()
     {
-        HoneyNeededForWin.Value = beePlayers.Count + 2;
-        ResearchNeededForWin.Value = waspPlayers.Count + 3;
+        ResearchNeededForWin.Value = beePlayers.Count + 2;
+        HoneyNeededForWin.Value = waspPlayers.Count + 3;
     }
 
     [Server]
