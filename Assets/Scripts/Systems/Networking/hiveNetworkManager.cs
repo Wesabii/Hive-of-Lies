@@ -115,7 +115,7 @@ public class HiveNetworkManager : NetworkManager
     [Server]
     void ReceiveSteamID(NetworkConnection conn, RequestIDMsg msg)
     {
-        CreatePlayer(conn, msg.ID);
+        CreatePlayer(conn, msg.ID, msg.username);
         onServerConnect?.Invoke(conn);
     }
 
@@ -123,6 +123,7 @@ public class HiveNetworkManager : NetworkManager
     void OnIDRequested(RequestIDMsg msg)
     {
         msg.ID = (ulong) SteamUser.GetSteamID();
+        msg.username = SteamFriends.GetFriendPersonaName(SteamUser.GetSteamID());
         NetworkClient.Send(msg);
     }
 
@@ -138,12 +139,12 @@ public class HiveNetworkManager : NetworkManager
         NetworkServer.AddPlayerForConnection(conn, ply.gameObject);
     }
 
-    public void CreatePlayer(NetworkConnection conn, ulong id)
+    public void CreatePlayer(NetworkConnection conn, ulong id, string userName)
     {
         HivePlayer ply = Instantiate(GamePlayerPrefab);
 
         ply.PlayerID = id;
-        ply.DisplayName = SteamFriends.GetFriendPersonaName(new CSteamID(ply.PlayerID));
+        ply.DisplayName = userName;
         ply.gameObject.name = "Player: " + ply.DisplayName;
         playersByConnection.Value[conn] = ply;
         alivePlayersByConnection.Value[conn] = ply;
@@ -276,5 +277,6 @@ public class HiveNetworkManager : NetworkManager
     private struct RequestIDMsg : NetworkMessage
     {
         public ulong ID;
+        public string username;
     }
 }
