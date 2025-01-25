@@ -10,10 +10,11 @@ public class IntVariable : Variable<int>
         a.Value++;
         return a;
     }
-    public static IntVariable operator --(IntVariable a) {
+    public static IntVariable operator --(IntVariable a) 
+    {
         a.Value--;
         return a;
-    }
+    }    
 
     /// <summary>
     /// Mostly useful for being assigned to UnityEvents in the editor
