@@ -83,6 +83,7 @@ public class CardsMission : MissionType
         playedTotal.Value = 0;
         playersPlayed = new();
         playedCards.Value = new();
+        UI.ShowUI();
     }
 
     [Server]

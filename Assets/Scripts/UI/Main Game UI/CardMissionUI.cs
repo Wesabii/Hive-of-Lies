@@ -61,8 +61,8 @@ public class CardMissionUI : NetworkBehaviour
         };
     }
 
-    [Client]
-    public void OnClosedVotePopup()
+    [ClientRpc]
+    public void ShowUI()
     {
         if (!isOnMission) return;
 
