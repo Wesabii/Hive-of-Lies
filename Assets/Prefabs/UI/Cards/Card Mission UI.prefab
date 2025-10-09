@@ -33,7 +33,6 @@ RectTransform:
   m_Children:
   - {fileID: 1924998582661251305}
   m_Father: {fileID: 4085610580250013911}
-  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -125,7 +124,6 @@ RectTransform:
   - {fileID: 4085610580427693106}
   - {fileID: 4085610581528504277}
   m_Father: {fileID: 4085610580516949759}
-  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -167,11 +165,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3466905654826890477}
-  - component: {fileID: 6453546030122495259}
-  - component: {fileID: 3337107456053002565}
-  - component: {fileID: 6919128608016368141}
-  - component: {fileID: 2877519521514309309}
-  - component: {fileID: 7027465474883053887}
   - component: {fileID: 7037346933011592580}
   - component: {fileID: 3301702688902783271}
   m_Layer: 5
@@ -195,158 +188,12 @@ RectTransform:
   m_Children:
   - {fileID: 4085610580516949759}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: -433.14752}
   m_SizeDelta: {x: 743.8284, y: 139.3126}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &6453546030122495259
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2513808415553107179}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1d992aefb126df148a88e425c1199171, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Events:
-  - {fileID: 11400000, guid: 043b4861c64dcae45ab6222f65a8b680, type: 2}
-  Response:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 7037346933011592580}
-        m_TargetAssemblyTypeName: CardMissionUI, Assembly-CSharp
-        m_MethodName: AfterDeckCreated
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
---- !u!114 &3337107456053002565
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2513808415553107179}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1d992aefb126df148a88e425c1199171, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Events:
-  - {fileID: 11400000, guid: 84bfa7269e26ce64280be9e1b752ac5b, type: 2}
-  Response:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 7037346933011592580}
-        m_TargetAssemblyTypeName: CardMissionUI, Assembly-CSharp
-        m_MethodName: ClientMissionStarted
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
---- !u!114 &6919128608016368141
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2513808415553107179}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1d992aefb126df148a88e425c1199171, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Events:
-  - {fileID: 11400000, guid: 12992b83150649a40b0b24a5c8950cc8, type: 2}
-  Response:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 7037346933011592580}
-        m_TargetAssemblyTypeName: CardMissionUI, Assembly-CSharp
-        m_MethodName: CloseUI
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
---- !u!114 &2877519521514309309
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2513808415553107179}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1d992aefb126df148a88e425c1199171, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Events:
-  - {fileID: 11400000, guid: 456dfbe3331dade4d9a3443cbefd9b9c, type: 2}
-  Response:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 7037346933011592580}
-        m_TargetAssemblyTypeName: CardMissionUI, Assembly-CSharp
-        m_MethodName: OnClosedVotePopup
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
---- !u!114 &7027465474883053887
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2513808415553107179}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cb79325f35809ff47a8c4c3685a9b136, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Events:
-  - {fileID: 11400000, guid: d620fd00fea705e4d93d857c9e4a3dd9, type: 2}
-  Response:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 7037346933011592580}
-        m_TargetAssemblyTypeName: CardMissionUI, Assembly-CSharp
-        m_MethodName: ShowTopCard
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &7037346933011592580
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -359,22 +206,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 465d33a6b2a6dcb4dac8bf6838af32a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  syncMode: 0
-  syncInterval: 0.1
   UI: {fileID: 4085610580516949728}
   drawResult: {fileID: 8305793141321889011}
   nextCard: {fileID: 407301277354038005}
   drawCost: {fileID: 1649619071214351667}
-  drawButton: {fileID: 4085610580250013912}
+  drawButton: {fileID: 4085610580250013910}
   submitButton: {fileID: 4085610581528504281}
   favour: {fileID: 11400000, guid: b3c83f0829867c340b1de39bf9b0df87, type: 2}
   isOnMission: {fileID: 11400000, guid: b9f406dffbe4a27409cd0aa785114640, type: 2}
-  roundNum: {fileID: 11400000, guid: 73d0036268d51b046965ada8277e8c59, type: 2}
-  missionDifficulty: {fileID: 11400000, guid: ec691bcc6c9cf504cb09faadebadf0b6, type: 2}
-  playerDrew: {fileID: 11400000, guid: eb7e86d991c53f24bbf5e1d391fb2ff0, type: 2}
-  playerPlayed: {fileID: 11400000, guid: 37674e625c13ad242929fdef74dd804d, type: 2}
-  allPlayers: {fileID: 11400000, guid: 0c33edbdca3ad504da00baa02cbb39bd, type: 2}
-  playersByConnection: {fileID: 11400000, guid: 587abc9579a505e44bfa639fd9a50698, type: 2}
 --- !u!114 &3301702688902783271
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -423,7 +262,6 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7236616462586319538}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -559,7 +397,6 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4085610581528504277}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -737,7 +574,6 @@ RectTransform:
   - {fileID: 4085610581428641760}
   - {fileID: 7236616462586319538}
   m_Father: {fileID: 2415637414675071723}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -828,7 +664,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 7037346933011592580}
         m_TargetAssemblyTypeName: CardMissionUI, Assembly-CSharp
-        m_MethodName: DrawNewCard
+        m_MethodName: DrawCard
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -870,12 +706,11 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2415637414675071723}
-  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 259.64355, y: 375}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 356.94104, y: -63.265}
+  m_SizeDelta: {x: 0, y: 375}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4085610580427693107
 CanvasRenderer:
@@ -962,7 +797,6 @@ RectTransform:
   - {fileID: 8899583634248861564}
   - {fileID: 2415637414675071723}
   m_Father: {fileID: 3466905654826890477}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1039,7 +873,6 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4085610580250013911}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -1218,7 +1051,6 @@ RectTransform:
   m_Children:
   - {fileID: 4085610579791041913}
   m_Father: {fileID: 2415637414675071723}
-  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -1350,7 +1182,6 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4085610580516949759}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}

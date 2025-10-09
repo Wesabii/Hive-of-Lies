@@ -62,8 +62,15 @@ public class CardsMission : MissionType
 
             afterDeckCreated?.Invoke();
         }));
+
     }
 
+    [Client]
+    public override void OnStartClient()
+    {
+        UI.onDraw += () => PlayerClickedDraw();
+        UI.onPlay += () => PlayerClickedSubmit();
+    }
 
     public void OnServerConnected(NetworkConnection conn)
     {
@@ -74,7 +81,7 @@ public class CardsMission : MissionType
 
         if (ply.Deck.Value.Hand.Count == 0) ply.Deck.Value.Draw();
 
-        UI.TargetActivateMissionUI(conn, ply.Deck.Value.Hand[0].Sprite, ply.NextDrawCost);
+        //UI.TargetActivateMissionUI(conn, ply.Deck.Value.Hand[0].Sprite, ply.NextDrawCost);
     }
 
     [Server]
@@ -83,11 +90,22 @@ public class CardsMission : MissionType
         playedTotal.Value = 0;
         playersPlayed = new();
         playedCards.Value = new();
+        foreach (HivePlayer ply in playersOnMission)
+        {
+            EnableUI(ply.connectionToClient);
+            ply.Deck.Value.Draw();
+            SendClientDrawInfo(ply.connectionToClient, ply.Deck.Value.Hand[0].Sprite, ply.NextDrawCost);
+        }
+    }
+
+    [TargetRpc]
+    private void EnableUI(NetworkConnection conn)
+    {
         UI.ShowUI();
     }
 
-    [Server]
-    public void PlayerClickedDraw(NetworkConnection conn)
+    [Command(requiresAuthority = false)]
+    private void PlayerClickedDraw(NetworkConnectionToClient conn = null)
     {
         if (!playersByConnection.Value.TryGetValue(conn, out HivePlayer ply)) return;
         //If the player isn't on the mission
@@ -110,10 +128,19 @@ public class CardsMission : MissionType
         deck.Draw();
 
         ply.NumDraws++;
+
+        SendClientDrawInfo(conn, deck.Hand[0].Sprite, ply.NextDrawCost);
     }
 
-    [Server]
-    public void PlayerClickedSubmit(NetworkConnection conn)
+    [TargetRpc]
+    private void SendClientDrawInfo(NetworkConnection conn, Sprite cardSprite, int nextDrawCost)
+    {
+        UI.ChangeDrawCost(nextDrawCost);
+        UI.ChangeHandCard(cardSprite);
+    }
+
+    [Command(requiresAuthority = false)]
+    private void PlayerClickedSubmit(NetworkConnectionToClient conn = null)
     {
         if (!playersByConnection.Value.TryGetValue(conn, out HivePlayer ply)) return;
         //If the player isn't on the mission
