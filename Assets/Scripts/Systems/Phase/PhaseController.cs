@@ -26,7 +26,8 @@ public class PhaseController : MonoBehaviour
     /// <summary>
     /// The index of the current phase of the game.
     /// </summary>
-    int currentPhase;
+    int currentPhaseIndex;
+    GamePhase currentPhase;
 
     /// <summary>
     /// Whether the final phase begins at the end of the current round
@@ -45,6 +46,12 @@ public class PhaseController : MonoBehaviour
     [Tooltip("What game phase should we reset to if the vote doesn't succeed")]
     [SerializeField] GamePhase downVoteReset;
 
+    [Tooltip("Event to call when starting a game phase")]
+    [SerializeField] GamePhaseEvent OnPhaseStart;
+
+    [Tooltip("Event to call when ending a game phase")]
+    [SerializeField] GamePhaseEvent OnPhaseEnd;
+
     void Start()
     {
         AnalyticsService.Instance.CustomData("hiveGameStarted");
@@ -59,7 +66,8 @@ public class PhaseController : MonoBehaviour
         //Make sure to listen for the setup ending too.
         setup.OnGamePhaseEnd += PhaseChange;
         //Set to -1 since on a phase end it increments, and we want to start at phases[0].
-        currentPhase = -1;
+        currentPhaseIndex = -1;
+        currentPhase = setup;
         //Complete the setup first.
         setup.ChangePhase();
 
@@ -71,22 +79,30 @@ public class PhaseController : MonoBehaviour
     /// </summary>
     void PhaseChange()
     {
+        OnPhaseEnd.Invoke(currentPhase);
         //Move to the next phase
-        currentPhase++;
+        currentPhaseIndex++;
 
         //At the start of each new round, invoke this event. We do it here to catch the first round as well (after the setup)
-        if (currentPhase == 0) roundBegun?.Invoke();
+        if (currentPhaseIndex == 0) roundBegun?.Invoke();
 
         //Make sure to loop back to the beginning again once we reach the last phase
-        if (currentPhase >= phases.Count)
+        if (currentPhaseIndex >= phases.Count)
         {
             StartNextRound();
         }
         else
         {
             //Begin the next phase
-            phases[currentPhase].ChangePhase();
+            ChangeToPhase(phases[currentPhaseIndex]);
         }
+    }
+
+    private void ChangeToPhase(GamePhase phase)
+    {
+        currentPhase = phase;
+        OnPhaseStart.Invoke(phase);
+        phase.ChangePhase();
     }
 
     /// <summary>
@@ -94,7 +110,7 @@ public class PhaseController : MonoBehaviour
     /// </summary>
     public void ResetRound()
     {
-        phases[currentPhase].End(true);
+        phases[currentPhaseIndex].End(true);
 
         StartNextRound();
     }
@@ -103,11 +119,11 @@ public class PhaseController : MonoBehaviour
     {
         if (endOfRoundFinalPhase)
         {
-            finalPhase.ChangePhase();
+            ChangeToPhase(finalPhase);
             return;
         }
 
-        currentPhase = 0;
+        currentPhaseIndex = 0;
         roundNum++;
         roundBegun?.Invoke();
         AnalyticsService.Instance.CustomData("roundStarted", new Dictionary<string, object>() { { "roundNum", roundNum + 1 } });
@@ -117,7 +133,7 @@ public class PhaseController : MonoBehaviour
             ply.Favour.Value += favourGainPerRound;
         }
 
-        phases[0].ChangePhase();
+        ChangeToPhase(phases[0]);
     }
 
     /// <summary>
@@ -125,9 +141,9 @@ public class PhaseController : MonoBehaviour
     /// </summary>
     public void ForceStartFinalPhase()
     {
-        phases[currentPhase].End(true);
+        phases[currentPhaseIndex].End(true);
 
-        finalPhase.ChangePhase();
+        ChangeToPhase(finalPhase);
     }
 
     /// <summary>
@@ -143,15 +159,15 @@ public class PhaseController : MonoBehaviour
     /// </summary>
     public void UnsuccessfulVote()
     {
-        phases[currentPhase].End(true);
+        phases[currentPhaseIndex].End(true);
 
         for (int i = 0; i < phases.Count; i++) 
         {
             GamePhase phase = phases[i];
             if (downVoteReset == phase)
             {
-                currentPhase = i;
-                phase.ChangePhase();
+                currentPhaseIndex = i;
+                ChangeToPhase(phase);
             }
         }
     }

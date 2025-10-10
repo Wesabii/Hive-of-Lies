@@ -29,13 +29,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2340413517240385021}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 986.4814, y: 559.02515, z: 4.061875}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2340413517240385022
 MonoBehaviour:
@@ -52,11 +52,13 @@ MonoBehaviour:
   setup: {fileID: 7323658707468256372, guid: 919085fba192005429ed3641e721ecfa, type: 3}
   phases: []
   finalPhase: {fileID: 0}
-  favourGainPerRound: 0
+  favourGainPerRound: 2
   roundNum: {fileID: 11400000, guid: 73d0036268d51b046965ada8277e8c59, type: 2}
   players: {fileID: 11400000, guid: 0c33edbdca3ad504da00baa02cbb39bd, type: 2}
   roundBegun: {fileID: 11400000, guid: 0467309d9d93ff84a9ef78acba99aca8, type: 2}
   downVoteReset: {fileID: 0}
+  OnPhaseStart: {fileID: 11400000, guid: 6eb546c2c14c76344a785c4514b792ad, type: 2}
+  OnPhaseEnd: {fileID: 11400000, guid: 5f3b4ba4e3fe412419ac82ab4c7b6da3, type: 2}
 --- !u!114 &2340413517240385023
 MonoBehaviour:
   m_ObjectHideFlags: 0
