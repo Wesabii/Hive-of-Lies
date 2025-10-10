@@ -27,8 +27,8 @@ public class CardMissionUI : MonoBehaviour
     [Tooltip("Returns true if the player is on the mission")]
     [SerializeField] BoolVariable isOnMission;
 
-    public event Action onDraw;
-    public event Action onPlay;
+    public event Action OnDraw;
+    public event Action OnPlay;
     #endregion
 
     public void ShowUI()
@@ -71,7 +71,12 @@ public class CardMissionUI : MonoBehaviour
         drawCostDisplay.SetActive(enabled);
     }
 
-    public void ChangeDrawsLeft(int val)
+    public int GetDrawsLeft()
+    {
+        return drawsLeft;
+    }
+
+    public void SetDrawsLeft(int val)
     {
         drawsLeftText.text = val.ToString();
         drawsLeft = val;
@@ -92,13 +97,13 @@ public class CardMissionUI : MonoBehaviour
 
     public void DrawCard()
     {
-        onDraw?.Invoke();
+        OnDraw?.Invoke();
     }
 
     public void PlayCard()
     {
         UI.SetActive(false);
         drawResult.color = new Color(drawResult.color.r, drawResult.color.g, drawResult.color.b, 0);
-        onPlay?.Invoke();
+        OnPlay?.Invoke();
     }
 }

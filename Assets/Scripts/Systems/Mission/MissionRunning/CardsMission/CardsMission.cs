@@ -44,7 +44,7 @@ public class CardsMission : MissionType
     [SerializeField] GameEvent afterDeckCreated;
 
     [Tooltip("The UI for this game phase")]
-    [SerializeField] CardMissionUI UI;
+    [SerializeField] CardMissionUI ui;
 
     [Tooltip("How many redraws all players are allowed by default")]
     [SerializeField] int startingRedraws;
@@ -74,8 +74,8 @@ public class CardsMission : MissionType
     [Client]
     public override void OnStartClient()
     {
-        UI.onDraw += () => PlayerClickedDraw();
-        UI.onPlay += () => PlayerClickedSubmit();
+        ui.OnDraw += () => PlayerClickedDraw();
+        ui.OnPlay += () => PlayerClickedSubmit();
     }
 
     public void OnServerConnected(NetworkConnection conn)
@@ -100,19 +100,20 @@ public class CardsMission : MissionType
         {
             ply.Deck.Value.Draw();
             ply.RedrawsLeft.Value += startingRedraws;
-            UI.ChangeDrawsLeft(ply.RedrawsLeft);
+            
             SendClientDrawInfo(ply.connectionToClient, ply.Deck.Value.Hand[0].Sprite, ply.NextDrawCost);
-            EnableUI(ply.connectionToClient);
-            //100 to prevent a 3 figure number. Realistically doesn't matter, but might as well pick *a* number
-            if (ply.RedrawsLeft.Value >= 100) UI.EnableDrawsLeft(false);
-            if (!drawsCostFavour) UI.EnableDrawCost(false);
+            EnableUI(ply.connectionToClient, ply.RedrawsLeft, drawsCostFavour);            
         }
     }
 
     [TargetRpc]
-    private void EnableUI(NetworkConnection conn)
+    private void EnableUI(NetworkConnection conn, int draws, bool enableCost)
     {
-        UI.ShowUI();
+        ui.ShowUI();
+        if (!enableCost) ui.EnableDrawCost(false);
+        ui.SetDrawsLeft(draws);
+        //100 to prevent a 3 figure number. Realistically doesn't matter, but might as well pick *a* number
+        if (draws >= 100) ui.EnableDrawsLeft(false);
     }
 
     [Command(requiresAuthority = false)]
@@ -147,8 +148,9 @@ public class CardsMission : MissionType
     [TargetRpc]
     private void SendClientDrawInfo(NetworkConnection conn, Sprite cardSprite, int nextDrawCost)
     {
-        UI.ChangeDrawCost(nextDrawCost);
-        UI.ChangeHandCard(cardSprite);
+        ui.ChangeDrawCost(nextDrawCost);
+        ui.ChangeHandCard(cardSprite);
+        ui.SetDrawsLeft(ui.GetDrawsLeft() - 1);
     }
 
     [Command(requiresAuthority = false)]

@@ -161,10 +161,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1788645345}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 0.08}
+  m_AnchorMax: {x: 1, y: 0.08}
   m_AnchoredPosition: {x: 0.000009536743, y: 0}
-  m_SizeDelta: {x: 2.2000656, y: 50.1985}
+  m_SizeDelta: {x: 0, y: 50.1985}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &76570108
 MonoBehaviour:
@@ -7157,6 +7157,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7588506163348034751, guid: 0ba20ac06173a6a4a9bedffd021489d0, type: 3}
       propertyPath: UI
+      value: 
+      objectReference: {fileID: 1159095067}
+    - target: {fileID: 7588506163348034751, guid: 0ba20ac06173a6a4a9bedffd021489d0, type: 3}
+      propertyPath: ui
       value: 
       objectReference: {fileID: 1159095067}
     - target: {fileID: 7588506163348034751, guid: 0ba20ac06173a6a4a9bedffd021489d0, type: 3}
