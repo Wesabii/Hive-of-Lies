@@ -6,8 +6,6 @@ using Mirror;
 public class FavourController : NetworkBehaviour
 {
     #region CLIENT
-    [SerializeField] TMPro.TMP_Text favourText;
-
     [Tooltip("The favour of the local player")]
     [SerializeField] IntVariable favour;
     #endregion
@@ -21,16 +19,15 @@ public class FavourController : NetworkBehaviour
     {
         foreach (HivePlayer ply in allPlayers.Value)
         {
-            ply.Favour.AfterVariableChanged += (val) => ChangeFavourUI(ply.connectionToClient, val);
+            ply.Favour.AfterVariableChanged += (val) => ChangeFavour(ply.connectionToClient, val);
             //Update the favour now, just in case
-            ChangeFavourUI(ply.connectionToClient, ply.Favour);
+            ChangeFavour(ply.connectionToClient, ply.Favour);
         }
     }
 
     [TargetRpc]
-    public void ChangeFavourUI(NetworkConnection conn, int change)
+    public void ChangeFavour(NetworkConnection conn, int change)
     {
-        favourText.text = change.ToString();
         favour.Value = change;
     }
 }
