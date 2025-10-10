@@ -46,6 +46,12 @@ public class CardsMission : MissionType
     [Tooltip("The UI for this game phase")]
     [SerializeField] CardMissionUI UI;
 
+    [Tooltip("How many redraws all players are allowed by default")]
+    [SerializeField] int startingRedraws;
+
+    [Tooltip("Whether you pay for your redraws while on the mission")]
+    [SerializeField] bool drawsCostFavour;
+
     [Server]
     public void AfterRolesChosen()
     {
@@ -92,9 +98,14 @@ public class CardsMission : MissionType
         playedCards.Value = new();
         foreach (HivePlayer ply in playersOnMission)
         {
-            EnableUI(ply.connectionToClient);
             ply.Deck.Value.Draw();
+            ply.RedrawsLeft.Value += startingRedraws;
+            UI.ChangeDrawsLeft(ply.RedrawsLeft);
             SendClientDrawInfo(ply.connectionToClient, ply.Deck.Value.Hand[0].Sprite, ply.NextDrawCost);
+            EnableUI(ply.connectionToClient);
+            //100 to prevent a 3 figure number. Realistically doesn't matter, but might as well pick *a* number
+            if (ply.RedrawsLeft.Value >= 100) UI.EnableDrawsLeft(false);
+            if (!drawsCostFavour) UI.EnableDrawCost(false);
         }
     }
 
@@ -112,6 +123,7 @@ public class CardsMission : MissionType
         if (!playersOnMission.Value.Contains(ply)) return;
 
         if (ply.Favour < ply.NextDrawCost && ply.NextDrawCost > 0) return;
+        if (ply.RedrawsLeft <= 0) return;
 
         Deck deck = ply.Deck;
 
@@ -122,12 +134,12 @@ public class CardsMission : MissionType
         }
 
         ply.Favour.Value -= ply.NextDrawCost;
-
         ply.NextDrawCost.Value = CalculateDrawCost(ply.NumDraws);
 
         deck.Draw();
 
         ply.NumDraws++;
+        ply.RedrawsLeft--;
 
         SendClientDrawInfo(conn, deck.Hand[0].Sprite, ply.NextDrawCost);
     }
@@ -177,6 +189,7 @@ public class CardsMission : MissionType
     [Server]
     public int CalculateDrawCost(int numDraws)
     {
+        if (!drawsCostFavour) return 0;
         //Make sure the correct number of rerolls are free
         if (numDraws < freeDraws) return 0;
 

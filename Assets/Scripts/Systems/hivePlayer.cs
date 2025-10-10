@@ -79,6 +79,11 @@ public class HivePlayer : NetworkBehaviour
     public IntVariable NumDraws;
 
     /// <summary>
+    /// The maximum draws the player is allowed on the mission
+    /// </summary>
+    public IntVariable RedrawsLeft;
+
+    /// <summary>
     /// Whether this player is alive or not
     /// </summary>
     public BoolVariable IsAlive;
@@ -124,6 +129,7 @@ public class HivePlayer : NetworkBehaviour
         NumVotes = ScriptableObject.CreateInstance<IntVariable>();
         Deck = ScriptableObject.CreateInstance<DeckVariable>();
         NumDraws = ScriptableObject.CreateInstance<IntVariable>();
+        RedrawsLeft = ScriptableObject.CreateInstance<IntVariable>();
         IsAlive = ScriptableObject.CreateInstance<BoolVariable>();
         Target = ScriptableObject.CreateInstance<HivePlayerVariable>();
         StingCost = ScriptableObject.CreateInstance<IntVariable>();

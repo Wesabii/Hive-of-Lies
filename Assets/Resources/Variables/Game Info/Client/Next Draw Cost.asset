@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6d999dbdde9bed8458229c463c9972c8, type: 3}
-  m_Name: NextDrawCost
+  m_Name: Next Draw Cost
   m_EditorClassIdentifier: 
   initialValue: 0
   currentValue: 0

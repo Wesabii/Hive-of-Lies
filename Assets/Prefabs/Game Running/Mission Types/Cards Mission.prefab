@@ -10,8 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1132620724603639033}
   - component: {fileID: 8935070084298747935}
-  - component: {fileID: 4520438252007715486}
-  - component: {fileID: 8256270414804623087}
   - component: {fileID: 7588506163348034751}
   - component: {fileID: -1901129887911759640}
   - component: {fileID: 318280579964048283}
@@ -29,13 +27,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1834205190614587359}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 986.4814, y: 559.02515, z: 4.061875}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &8935070084298747935
 MonoBehaviour:
@@ -66,64 +64,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &4520438252007715486
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1834205190614587359}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cb79325f35809ff47a8c4c3685a9b136, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Events:
-  - {fileID: 11400000, guid: eb7e86d991c53f24bbf5e1d391fb2ff0, type: 2}
-  Response:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 7588506163348034751}
-        m_TargetAssemblyTypeName: CardsMission, Assembly-CSharp
-        m_MethodName: PlayerClickedDraw
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
---- !u!114 &8256270414804623087
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1834205190614587359}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cb79325f35809ff47a8c4c3685a9b136, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Events:
-  - {fileID: 11400000, guid: 37674e625c13ad242929fdef74dd804d, type: 2}
-  Response:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 7588506163348034751}
-        m_TargetAssemblyTypeName: CardsMission, Assembly-CSharp
-        m_MethodName: PlayerClickedSubmit
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &7588506163348034751
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -139,7 +79,6 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   Active: 0
-  exhaustionPenalty: {fileID: 11400000, guid: 324d0b2c264c77c4aa06399b7301de42, type: 2}
   playedTotal: {fileID: 11400000, guid: 83624ceb4515efa42b174ca87b24d83f, type: 2}
   allRoles: {fileID: 11400000, guid: 7aecc6004a4878546b7578a75f4e4b79, type: 2}
   allPlayers: {fileID: 11400000, guid: 0c33edbdca3ad504da00baa02cbb39bd, type: 2}
@@ -152,6 +91,8 @@ MonoBehaviour:
   allPlayersPlayed: {fileID: 11400000, guid: 12992b83150649a40b0b24a5c8950cc8, type: 2}
   afterDeckCreated: {fileID: 11400000, guid: 043b4861c64dcae45ab6222f65a8b680, type: 2}
   UI: {fileID: 0}
+  startingRedraws: 0
+  drawsCostFavour: 0
 --- !u!114 &-1901129887911759640
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -167,7 +108,7 @@ MonoBehaviour:
   sceneId: 0
   serverOnly: 0
   visible: 0
-  m_AssetId: 0ba20ac06173a6a4a9bedffd021489d0
+  m_AssetId: 
   hasSpawned: 0
 --- !u!114 &318280579964048283
 MonoBehaviour:

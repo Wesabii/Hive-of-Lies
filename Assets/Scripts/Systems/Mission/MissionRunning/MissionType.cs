@@ -12,6 +12,7 @@ public abstract class MissionType : NetworkBehaviour
     /// <summary>
     /// Whether the current phase of the game is the mission phase
     /// </summary>
+    [HideInInspector]
     public bool Active;
 
     /// <summary>

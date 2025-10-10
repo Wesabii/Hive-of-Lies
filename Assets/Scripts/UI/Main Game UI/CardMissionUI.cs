@@ -13,10 +13,16 @@ public class CardMissionUI : MonoBehaviour
     [SerializeField] GameObject UI;
     [SerializeField] Image drawResult;
     [SerializeField] Image nextCard;
-    [SerializeField] TMP_Text drawCost;
+    [SerializeField] GameObject drawCostDisplay;
+    [SerializeField] TMP_Text drawCostText;
+    [SerializeField] GameObject drawsLeftDisplay;
+    [SerializeField] TMP_Text drawsLeftText;
     [SerializeField] Button drawButton;
     [SerializeField] GameObject submitButton;
     [SerializeField] IntVariable favour;
+
+    private int drawCost;
+    private int drawsLeft;
 
     [Tooltip("Returns true if the player is on the mission")]
     [SerializeField] BoolVariable isOnMission;
@@ -55,8 +61,33 @@ public class CardMissionUI : MonoBehaviour
 
     public void ChangeDrawCost(int val)
     {
-        drawCost.text = val.ToString();
-        drawButton.interactable = val <= favour;
+        drawCostText.text = val.ToString();
+        drawCost = val;
+        drawButton.interactable = AbleToDraw();
+    }
+
+    public void EnableDrawCost(bool enabled)
+    {
+        drawCostDisplay.SetActive(enabled);
+    }
+
+    public void ChangeDrawsLeft(int val)
+    {
+        drawsLeftText.text = val.ToString();
+        drawsLeft = val;
+        drawButton.interactable = AbleToDraw();
+    }
+
+    public void EnableDrawsLeft(bool enabled)
+    {
+        drawsLeftDisplay.SetActive(enabled);
+    }
+
+    private bool AbleToDraw()
+    {
+        if (drawCost > favour) return false;
+        if (drawsLeft <= 0) return false;
+        return true;
     }
 
     public void DrawCard()
