@@ -2,17 +2,33 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Steamworks;
+using Mirror;
 
 public class DrawCostCapped : RoleAbility
 {
-    [SerializeField] int maxCost = 2;
-    protected override void OnRoleGiven()
+    [SerializeField] int maxCost;
+    [SerializeField] BuyRedraws buyRedraws;
+
+    public void RegisterPhase(GamePhase phase)
     {
-        Owner.NextDrawCost.OnVariableChanged += ModifyDrawCost;
+        if (buyRedraws != null) return;
+        if (phase is not BuyRedraws) return;
+        buyRedraws = phase as BuyRedraws;
+        buyRedraws.onCalculateCost += ModifyCalculation;
+        if (!isClient) RegisterPhaseClient(Owner.connectionToClient, phase as BuyRedraws);
     }
 
-    void ModifyDrawCost(int oldCost, ref int newCost)
+    [TargetRpc]
+    private void RegisterPhaseClient(NetworkConnection conn, BuyRedraws phase)
     {
-        newCost = Mathf.Min(newCost, maxCost);
+        phase.onCalculateCost += ModifyCalculation;
+    }
+
+    private void ModifyCalculation(HivePlayer ply, int numDraws, ref int cost)
+    {
+        if (isClient || ply == Owner)
+        {
+            cost = Mathf.Min(maxCost, cost);
+        }
     }
 }

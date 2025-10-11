@@ -5,14 +5,27 @@ using UnityEngine;
 public class ModifyDrawCost : RoleAbility
 {
     [SerializeField] float drawCostMod;
+    [SerializeField] BuyRedraws buyRedraws;
 
-    protected override void OnRoleGiven()
+    public void RegisterPhase(GamePhase phase)
     {
-        Owner.NextDrawCost.OnVariableChanged += OnDrawChange;
+        if (buyRedraws != null) return;
+        if (phase is not BuyRedraws) return;
+        buyRedraws = phase as BuyRedraws;
+        buyRedraws.onCalculateCost += ModifyCalculation;
+        if (!isClient) RegisterPhaseClient(buyRedraws);
+    }
+    
+    private void RegisterPhaseClient(BuyRedraws phase)
+    {
+        phase.onCalculateCost += ModifyCalculation;
     }
 
-    void OnDrawChange(int oldVal, ref int newVal)
+    private void ModifyCalculation(HivePlayer ply, int numDraws, ref int cost)
     {
-        newVal = Mathf.FloorToInt(newVal * drawCostMod);
+        if (isClient || ply == Owner)
+        {
+            cost = Mathf.FloorToInt(cost * drawCostMod);
+        }
     }
 }
