@@ -22,6 +22,9 @@ public abstract class RuntimeSet<T> : ScriptableObject
     [Tooltip("The set that this set is an extension of")]
     [SerializeField] private RuntimeSet<T> extensionOf;
 
+    [Tooltip("Set of players that this set is a compliment of (requires sharing a subset)")]
+    [SerializeField] private RuntimeSet<T> complement;
+
     [Space]
     [Space]
 
@@ -104,8 +107,8 @@ public abstract class RuntimeSet<T> : ScriptableObject
         currentValue.Add(item);
         AfterItemAdded?.Invoke(item);
 
-        if (subsetOf == null) return;
-        subsetOf.Add(item);
+        if (subsetOf != null) subsetOf.Add(item);
+        if (complement != null) complement.Remove(item);
     }
 
     public void Remove(T item)
@@ -119,8 +122,8 @@ public abstract class RuntimeSet<T> : ScriptableObject
         currentValue.Remove(item);
         AfterItemRemoved?.Invoke(item);
 
-        if (extensionOf == null) return;
-        extensionOf.Remove(item);
+        if (extensionOf != null) extensionOf.Remove(item);
+        if (complement != null) complement.Add(item);
     }
 
     public void RemoveAt(int index)
@@ -203,5 +206,9 @@ public abstract class RuntimeSet<T> : ScriptableObject
         if (initialValue != null) currentValue.AddRange(initialValue);
         if (extensionOf != null) currentValue.AddRange(extensionOf.currentValue);
         if (subsetOf != null && startFull) currentValue.AddRange(subsetOf.currentValue);
+        if (complement != null && subsetOf != null)
+        {
+            complement.Value = subsetOf.Value.FindAll((item) => !Value.Contains(item));
+        }
     }
 }
