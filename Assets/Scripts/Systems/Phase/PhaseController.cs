@@ -40,6 +40,9 @@ public class PhaseController : MonoBehaviour
     [Tooltip("All players")]
     [SerializeField] HivePlayerSet players;
 
+    [Tooltip("The set of players who will regenerate favour each round")]
+    [SerializeField] HivePlayerSet playersToRegenFavour;
+
     [Tooltip("Invoked when a new round begins")]
     [SerializeField] GameEvent roundBegun;
 
@@ -132,7 +135,7 @@ public class PhaseController : MonoBehaviour
         roundBegun?.Invoke();
         AnalyticsService.Instance.CustomData("roundStarted", new Dictionary<string, object>() { { "roundNum", roundNum + 1 } });
 
-        foreach (HivePlayer ply in players.Value)
+        foreach (HivePlayer ply in playersToRegenFavour.Value)
         {
             ply.Favour.Value += favourGainPerRound;
         }
