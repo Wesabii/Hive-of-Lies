@@ -27,11 +27,12 @@ public class BuyRedrawsUI : MonoBehaviour
     public void Setup(int cost)
     {
         UI.SetActive(true);
+        redraws = 0;
         redrawsText.text = "0";
         drawCostText.text = cost.ToString();
         redrawCost.Value = cost;
 
-        if (redrawCost > favour.Value)
+        if (redrawCost.Value > favour.Value)
         {
             addDrawButton.interactable = false;
         }
@@ -42,11 +43,11 @@ public class BuyRedrawsUI : MonoBehaviour
         redraws++;
         redrawsText.text = redraws.ToString();
         favour.Value -= redrawCost.Value;
+        OnAddDraw?.Invoke(redraws);
         if (redrawCost.Value > favour.Value)
         {
             addDrawButton.interactable = false;
         }
-        OnAddDraw?.Invoke(redraws);
     }
 
     public void PayCost()

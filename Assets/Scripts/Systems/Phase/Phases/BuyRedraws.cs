@@ -26,7 +26,7 @@ public class BuyRedraws : GamePhase
     public override void OnStartClient()
     {
         ui.OnContinue += (draws) => OnPlayerContinue(draws);
-        ui.OnAddDraw += (draws) => clientRedrawCost.Value = CalculateDrawCost(null, draws);
+        ui.OnAddDraw += (draws) => clientRedrawCost.Value = CalculateDrawCost(null, draws + 1);
     }
 
     [Server]
@@ -76,7 +76,7 @@ public class BuyRedraws : GamePhase
         int cost = 0;
         for (int i = 0; i < numDraws; i++)
         {
-            cost += CalculateDrawCost(ply, i + 1);
+            cost += CalculateDrawCost(ply, i);
         }
         return cost;
     }
