@@ -882,7 +882,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   favour: {fileID: 11400000, guid: b3c83f0829867c340b1de39bf9b0df87, type: 2}
-  redrawCost: {fileID: 11400000, guid: 84bf08cf7fd272b48b666289071c12a3, type: 2}
+  nextRedrawCost: {fileID: 11400000, guid: 84bf08cf7fd272b48b666289071c12a3, type: 2}
   redrawsText: {fileID: 2860908815193211113}
   drawCostText: {fileID: 2398962075016039680}
   addDrawButton: {fileID: 8915929055864887689}

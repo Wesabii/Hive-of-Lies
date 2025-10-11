@@ -39,7 +39,7 @@ public class BuyRedraws : GamePhase
     [TargetRpc]
     private void EnableUI(NetworkConnection conn, bool active)
     {
-        ui.Setup(redrawCost);
+        ui.Setup(CalculateDrawCost(null, 0));
     }
 
     [Command(requiresAuthority = false)]
@@ -66,7 +66,7 @@ public class BuyRedraws : GamePhase
 
     private int CalculateDrawCost(HivePlayer ply, int drawNum)
     {
-        int cost = drawNum * redrawCost.Value;
+        int cost = (drawNum + 1) * redrawCost.Value;
         onCalculateCost?.Invoke(ply, drawNum, ref cost);
         return cost;
     }
