@@ -52,6 +52,9 @@ public class PhaseController : MonoBehaviour
     [Tooltip("Event to call when ending a game phase")]
     [SerializeField] GamePhaseEvent OnPhaseEnd;
 
+    [Tooltip("Event to call when a game phase is registered")]
+    [SerializeField] GamePhaseEvent OnGamePhaseRegistered;
+
     void Start()
     {
         AnalyticsService.Instance.CustomData("hiveGameStarted");
@@ -62,6 +65,7 @@ public class PhaseController : MonoBehaviour
         {
             //Listen for when phases end
             phase.OnGamePhaseEnd += PhaseChange;
+            OnGamePhaseRegistered.Invoke(phase);
         }
         //Make sure to listen for the setup ending too.
         setup.OnGamePhaseEnd += PhaseChange;

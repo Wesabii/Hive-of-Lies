@@ -59,6 +59,7 @@ MonoBehaviour:
   downVoteReset: {fileID: 0}
   OnPhaseStart: {fileID: 11400000, guid: 6eb546c2c14c76344a785c4514b792ad, type: 2}
   OnPhaseEnd: {fileID: 11400000, guid: 5f3b4ba4e3fe412419ac82ab4c7b6da3, type: 2}
+  OnGamePhaseRegistered: {fileID: 11400000, guid: 101b069c2ef4af341a6a16344fccf9fe, type: 2}
 --- !u!114 &2340413517240385023
 MonoBehaviour:
   m_ObjectHideFlags: 0

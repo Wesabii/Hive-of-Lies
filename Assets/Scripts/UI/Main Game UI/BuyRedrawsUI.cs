@@ -16,7 +16,13 @@ public class BuyRedrawsUI : MonoBehaviour
     [SerializeField] Button addDrawButton;
     [SerializeField] GameObject UI;
 
+    public event Action<int> OnAddDraw;
     public event Action<int> OnContinue;
+
+    private void Start()
+    {
+        redrawCost.AfterVariableChanged += (val) => drawCostText.text = val.ToString();
+    }
 
     public void Setup(int cost)
     {
@@ -40,6 +46,7 @@ public class BuyRedrawsUI : MonoBehaviour
         {
             addDrawButton.interactable = false;
         }
+        OnAddDraw?.Invoke(redraws);
     }
 
     public void PayCost()

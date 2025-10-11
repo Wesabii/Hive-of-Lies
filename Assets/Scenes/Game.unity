@@ -161,10 +161,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1788645345}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0.08}
-  m_AnchorMax: {x: 1, y: 0.08}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0.000009536743, y: 0}
-  m_SizeDelta: {x: 0, y: 50.1985}
+  m_SizeDelta: {x: 2.2000656, y: 50.1985}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &76570108
 MonoBehaviour:
@@ -7100,10 +7100,6 @@ PrefabInstance:
     - target: {fileID: 2340413517240385022, guid: 405a08d216e5c914dbf6dee7722086d9, type: 3}
       propertyPath: phases.Array.size
       value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 2340413517240385022, guid: 405a08d216e5c914dbf6dee7722086d9, type: 3}
-      propertyPath: favourGainPerRound
-      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2340413517240385022, guid: 405a08d216e5c914dbf6dee7722086d9, type: 3}
       propertyPath: phases.Array.data[0]

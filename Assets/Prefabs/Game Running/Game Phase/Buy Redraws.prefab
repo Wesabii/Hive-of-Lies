@@ -69,3 +69,4 @@ MonoBehaviour:
   playersOnMission: {fileID: 11400000, guid: 6a71e0d5be0861a4db6391c90d6380d5, type: 2}
   redrawCost: {fileID: 11400000, guid: eaaf3038d905720438992fe7c31237d4, type: 2}
   ui: {fileID: 0}
+  clientRedrawCost: {fileID: 11400000, guid: 84bf08cf7fd272b48b666289071c12a3, type: 2}
