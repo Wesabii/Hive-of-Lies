@@ -9,7 +9,7 @@ public class RunMission : GamePhase
     /// <summary>
     /// The specific type of mission we want to run (e.g. cards, dice, etc.)
     /// </summary>
-    [SerializeField] MissionType mission;
+    public MissionType mission;
 
     [Tooltip("The currently active mission")]
     [SerializeField] MissionVariable currentMission;

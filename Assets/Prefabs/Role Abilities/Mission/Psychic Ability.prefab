@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 1582437093238936245}
   - component: {fileID: 4102560224502610928}
   - component: {fileID: 2138806502828921072}
+  - component: {fileID: -69050328028517688}
   m_Layer: 0
   m_Name: Psychic Ability
   m_TagString: Untagged
@@ -25,13 +26,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5724992533383566400}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &4102560224502610928
 MonoBehaviour:
@@ -65,4 +66,32 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   active: 1
-  showTopCard: {fileID: 11400000, guid: d620fd00fea705e4d93d857c9e4a3dd9, type: 2}
+--- !u!114 &-69050328028517688
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5724992533383566400}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e6b591ba95bdc09459c199d5932d1d6b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Events:
+  - {fileID: 11400000, guid: 101b069c2ef4af341a6a16344fccf9fe, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2138806502828921072}
+        m_TargetAssemblyTypeName: PsychicAbility, Assembly-CSharp
+        m_MethodName: OnGamePhaseRegistered
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2

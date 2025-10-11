@@ -182,6 +182,13 @@ public class CardsMission : MissionType
         }
     }
 
+    [TargetRpc]
+    public void ShowTopCardAs(NetworkConnection conn, Sprite card)
+    {
+        ui.ChangeTopCard(card);
+        ui.ShowTopCard(true);
+    }
+
     /// <summary>
     /// Calculates the cost of the draw
     /// </summary>
