@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Unity.Services.Core;
 using Unity.Services.Analytics;
+using UnityEngine.UnityConsent;
 
 public class Init : MonoBehaviour
 {
@@ -16,7 +17,7 @@ public class Init : MonoBehaviour
 
         await UnityServices.InitializeAsync();
 
-        if (PlayerPrefs.GetInt(consentString) > 0) Consent(true);
+        Consent(PlayerPrefs.GetInt(consentString) > 0);
         if (PlayerPrefs.GetInt(consentPopupString) > 0) return;
 
         consentPopup.SetActive(true);
@@ -25,16 +26,13 @@ public class Init : MonoBehaviour
 
     public void Consent(bool consent)
     {
-        if (consent)
-        {
-            PlayerPrefs.SetInt(consentString, 1);
-            AnalyticsService.Instance.StartDataCollection();
-        }
-        else
-        {
-            PlayerPrefs.SetInt(consentString, 0);
-            AnalyticsService.Instance.StopDataCollection();
-        }
+        ConsentState state = new();
+        state.AnalyticsIntent = consent ? ConsentStatus.Granted : ConsentStatus.Denied;
+        state.AdsIntent = ConsentStatus.Unspecified;
+        EndUserConsent.SetConsentState(state);
+
+        int givenConsent = consent ? 1 : 0;
+        PlayerPrefs.SetInt(consentString, givenConsent);
     }
 
     public void DeleteData()

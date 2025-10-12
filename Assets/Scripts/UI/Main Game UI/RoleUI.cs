@@ -124,22 +124,13 @@ public class RoleUI : NetworkBehaviour
 
         foreach (RoleData rl in ply.RoleChoices)
         {
-            Dictionary<string, object> parameters = new()
-            {
-                { "roleName", rl.RoleName },
-                { "team", rl.Team.ToString() },
-                { "favour", rl.StartingFavour },
-                { "playerCount", playerCount.Value },
-            };
-
             if (rl == data)
             {
-                AnalyticsService.Instance.CustomData("rolePicked", parameters);
+                AnalyticsService.Instance.RecordEvent(new RolePickedEvent(rl, playerCount.Value));
             }
             else
             {
-                parameters.TryAdd("rolePicked", data.RoleName);
-                AnalyticsService.Instance.CustomData("rolePassed", parameters);
+                AnalyticsService.Instance.RecordEvent(new RolePassedEvent(rl, playerCount.Value, data));
                 rejectedRoles.Add(rl);
             }
         }
@@ -190,4 +181,29 @@ public class RoleUI : NetworkBehaviour
 
         return new Vector3(x, cardYPosition, 0);
     }
+}
+
+public class RolePickedEvent : Unity.Services.Analytics.Event
+{
+    public RolePickedEvent(RoleData role, int playerCount, string eventName = "rolePicked"): base(eventName)
+    {
+        RoleName = role.RoleName;
+        Team = role.Team;
+        Favour = role.StartingFavour;
+        PlayerCount = playerCount;
+    }
+    public string RoleName { set { SetParameter("roleName", value); } }
+    public Team Team { set { SetParameter("playerCount", value.ToString()); } }
+    public int Favour { set { SetParameter("favour", value); } }
+    public int PlayerCount { set { SetParameter("playerCount", value); } }
+}
+
+public class RolePassedEvent : RolePickedEvent
+{
+    public RolePassedEvent(RoleData role, int playerCount, RoleData rolePicked) : base(role, playerCount, "rolePassed")
+    {
+        RolePicked = rolePicked.RoleName;
+    }
+
+    public string RolePicked { set { SetParameter("rolePicked", value); } }
 }

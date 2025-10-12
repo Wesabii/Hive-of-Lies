@@ -81,21 +81,28 @@ public class RunMission : GamePhase
     {
         Debug.Log("All mission effects have finished. Starting the next round");
 
-        int waspsOnMission = 0;
-        foreach (HivePlayer ply in playersOnMission.Value)
-        {
-            if (ply.Team.Value.Team == Team.Wasp) waspsOnMission++;
-        }
-        Dictionary<string, object> parameters = new()
-        {
-            { "missionName",  currentMission.Value.MissionName},
-            { "missionResult", missionResult.Value.ToString()},
-            { "playerCount", playerCount.Value },
-            { "waspsOnMission", waspsOnMission },
-            { "beesOnMission", playersOnMission.Value.Count - waspsOnMission },
-            { "cardsTotal", cardsTotal.Value }
-        };
-        AnalyticsService.Instance.CustomData("missionCompleted", parameters);
+        MissionCompletedEvent aEvent = new(currentMission, missionResult, playersOnMission, cardsTotal, playerCount);
+        AnalyticsService.Instance.RecordEvent(aEvent);
         End();
     }
+}
+
+public class MissionCompletedEvent: Unity.Services.Analytics.Event
+{
+    public MissionCompletedEvent(Mission mission, MissionResult result, HivePlayerSet playersOnMission, int totalCardValue, int playerCount): base("missionCompleted")
+    {
+        MissionName = mission.MissionName;
+        MissionResult = result.ToString();
+        WaspsOnMission = playersOnMission.Value.FindAll((ply) => ply.Team.Value.Team == Team.Wasp).Count;
+        BeesOnMission = playersOnMission.Value.FindAll((ply) => ply.Team.Value.Team == Team.Bee).Count;
+        CardsTotal = totalCardValue;
+        PlayerCount = playerCount;
+    }
+
+    public string MissionName { set { SetParameter("missionName", value); } }
+    public string MissionResult { set { SetParameter("missionResult", value); } }
+    public int WaspsOnMission { set { SetParameter("waspsOnMission", value); } }
+    public int BeesOnMission { set { SetParameter("beesOnMission", value); } }
+    public int PlayerCount { set { SetParameter("playerCount", value); } }
+    public int CardsTotal { set { SetParameter("cardsTotal", value); } }
 }

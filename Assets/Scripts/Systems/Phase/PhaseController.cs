@@ -60,9 +60,9 @@ public class PhaseController : MonoBehaviour
 
     void Start()
     {
-        AnalyticsService.Instance.CustomData("hiveGameStarted");
+        AnalyticsService.Instance.RecordEvent("hiveGameStarted");
         if (!NetworkServer.active) return;
-        AnalyticsService.Instance.CustomData("hiveGameStartedAsHost", new Dictionary<string, object>() { {"playerCount", players.Value.Count } });
+        AnalyticsService.Instance.RecordEvent(new ServerGameStartEvent(players.Value.Count));
         //Give all events a reference to the event system. Saves having to do a FindObjectOfType on each child class of GamePhase.
         foreach (GamePhase phase in phases)
         {
@@ -78,7 +78,7 @@ public class PhaseController : MonoBehaviour
         //Complete the setup first.
         setup.ChangePhase();
 
-        AnalyticsService.Instance.CustomData("roundStarted", new Dictionary<string, object>() { { "roundNum", roundNum + 1 } });
+        AnalyticsService.Instance.RecordEvent(new RoundStartEvent(roundNum + 1));
     }
 
     /// <summary>
@@ -133,7 +133,7 @@ public class PhaseController : MonoBehaviour
         currentPhaseIndex = 0;
         roundNum++;
         roundBegun?.Invoke();
-        AnalyticsService.Instance.CustomData("roundStarted", new Dictionary<string, object>() { { "roundNum", roundNum + 1 } });
+        AnalyticsService.Instance.RecordEvent(new RoundStartEvent(roundNum + 1));
 
         foreach (HivePlayer ply in playersToRegenFavour.Value)
         {
@@ -184,4 +184,22 @@ public class PhaseController : MonoBehaviour
         HiveNetworkManager manager = NetworkManager.singleton as HiveNetworkManager;
         manager.ServerChangeScene(manager.GameMode.Value.GameScene);
     }
+}
+
+public class RoundStartEvent: Unity.Services.Analytics.Event
+{
+    public RoundStartEvent(int num): base("roundStarted")
+    {
+        RoundNum = num;
+    }
+    public int RoundNum { set { SetParameter("roundNum", value); } }
+}
+
+public class ServerGameStartEvent: Unity.Services.Analytics.Event
+{
+    public ServerGameStartEvent(int playerCount): base("hiveGameStartedAsHost")
+    {
+        PlayerCount = playerCount;
+    }
+    public int PlayerCount { set { SetParameter("playerCount", value); } }
 }

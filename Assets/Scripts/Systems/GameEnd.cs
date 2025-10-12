@@ -80,16 +80,8 @@ public class GameEnd : NetworkBehaviour
         screen.GetComponent<PlayAgainButton>().SetText(beesWinText.GetLocalizedString());
         NetworkServer.Spawn(screen);
 
-        Dictionary<string, object> parameters = new()
-        {
-            { "beePoints", ResearchProgress.Value},
-            { "waspPoints", HoneyStolen.Value },
-            { "waspsAlive", waspPlayers.Value.Count },
-            { "team", "Bee"},
-            { "playerCount", playersByConnection.Value.Count },
-            { "roundNum",  roundNum.Value},
-        };
-        AnalyticsService.Instance.CustomData("hiveGameEnded", parameters);
+        HiveGameEnded waspsWinEvent = CreateGameEndEvent(Team.Bee);
+        AnalyticsService.Instance.RecordEvent(waspsWinEvent);
     }
 
     [Server]
@@ -101,16 +93,8 @@ public class GameEnd : NetworkBehaviour
         screen.GetComponent<PlayAgainButton>().SetText(waspsWinText.GetLocalizedString());
         NetworkServer.Spawn(screen);
 
-        Dictionary<string, object> parameters = new()
-        {
-            { "beePoints", ResearchProgress.Value},
-            { "waspPoints", HoneyStolen.Value },
-            { "waspsAlive", waspPlayers.Value.Count },
-            { "team", "Wasp"},
-            { "playerCount", playersByConnection.Value.Count },
-            { "roundNum",  roundNum.Value},
-        };
-        AnalyticsService.Instance.CustomData("hiveGameEnded", parameters);
+        HiveGameEnded waspsWinEvent = CreateGameEndEvent(Team.Wasp);
+        AnalyticsService.Instance.RecordEvent(waspsWinEvent);
     }
 
     [Server]
@@ -122,15 +106,34 @@ public class GameEnd : NetworkBehaviour
         screen.GetComponent<PlayAgainButton>().SetText(string.Format(soloWinText.GetLocalizedString(), ply.DisplayName));
         NetworkServer.Spawn(screen);
 
-        Dictionary<string, object> parameters = new()
-        {
-            { "beePoints", ResearchProgress.Value},
-            { "waspPoints", HoneyStolen.Value },
-            { "waspsAlive", waspPlayers.Value.Count },
-            { "team", "Solo"},
-            { "playerCount", playersByConnection.Value.Count },
-            { "roundNum",  roundNum.Value},
-        };
-        AnalyticsService.Instance.CustomData("hiveGameEnded", parameters);
+        HiveGameEnded waspsWinEvent = CreateGameEndEvent(Team.None);
+        AnalyticsService.Instance.RecordEvent(waspsWinEvent);
     }
+
+    private HiveGameEnded CreateGameEndEvent(Team team)
+    {
+        HiveGameEnded ev = new();
+        ev.BeePoints = ResearchProgress.Value;
+        ev.WaspPoints = HoneyStolen.Value;
+        ev.WaspsAlive = waspPlayers.Value.Count;
+        ev.Team = team;
+        ev.PlayerCount = playersByConnection.Value.Count;
+        ev.RoundNum = roundNum.Value;
+
+        return ev;
+    }
+}
+
+public class HiveGameEnded : Unity.Services.Analytics.Event
+{
+    public HiveGameEnded() : base("hiveGameEnded")
+    {
+    }
+
+    public int BeePoints { set { SetParameter("beePoints", value); } }
+    public int WaspPoints { set { SetParameter("waspPoints", value); } }
+    public int WaspsAlive { set { SetParameter("waspsAlive", value); } }
+    public Team Team { set { SetParameter("team", value.ToString()); } }
+    public int PlayerCount { set { SetParameter("playerCount", value); } }
+    public int RoundNum { set { SetParameter("roundNum", value); } }
 }
