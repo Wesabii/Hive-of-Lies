@@ -26,7 +26,7 @@ public class DetectiveAbility : RoleAbility
         if (roundNum != abilityTriggerRound) return;
 
         string txt = "";
-        beePlayers.Value.Shuffle();
+        beePlayers.Shuffle();
         foreach (HivePlayer ply in beePlayers.Value)
         {
             if (ply == Owner) continue;

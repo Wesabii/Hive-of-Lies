@@ -145,7 +145,7 @@ public class Sting : NetworkBehaviour
     [Server]
     public void AfterRolesChosen()
     {
-        beePlayers.Value.Shuffle();
+        beePlayers.Shuffle();
         for (int i = 0, j = 0; i < waspPlayers.Value.Count; i++)
         {
             HivePlayer wasp = waspPlayers.Value[i];

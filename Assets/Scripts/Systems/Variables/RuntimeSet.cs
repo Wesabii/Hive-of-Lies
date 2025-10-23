@@ -2,10 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Mirror;
+using System.Collections.ObjectModel;
 
 public abstract class RuntimeSet<T> : ScriptableObject
 {
-    public static implicit operator List<T>(RuntimeSet<T> a) => a.Value;
+    public static implicit operator ReadOnlyCollection<T>(RuntimeSet<T> a) => a.Value;
 
     [Tooltip("The initial value of this variable")]
     [SerializeField] private List<T> initialValue;
@@ -49,16 +50,11 @@ public abstract class RuntimeSet<T> : ScriptableObject
     /// <summary>
     /// The value of this variable
     /// </summary>
-    public List<T> Value
+    public ReadOnlyCollection<T> Value
     {
         get
         {
-            return currentValue;
-        }
-        set
-        {
-            currentValue = value;
-            if (value.Count == 0) AfterCleared?.Invoke();
+            return currentValue.AsReadOnly();
         }
     }
 
@@ -104,6 +100,14 @@ public abstract class RuntimeSet<T> : ScriptableObject
         if (complement != null) complement.Remove(item);
     }
 
+    public void AddRange(IEnumerable<T> items)
+    {
+        foreach (T item in items)
+        {
+            Add(item);
+        }
+    }
+    
     public void Remove(T item)
     {
         if (!Value.Contains(item)) return;
@@ -121,7 +125,7 @@ public abstract class RuntimeSet<T> : ScriptableObject
 
     public void RemoveAt(int index)
     {
-        Value.RemoveAt(index);
+        Remove(currentValue[index]);
     }
 
     public bool Contains(T val)
@@ -136,7 +140,12 @@ public abstract class RuntimeSet<T> : ScriptableObject
 
     public void Shuffle()
     {
-        Value.Shuffle();
+        currentValue.Shuffle();
+    }
+
+    public void Sort(System.Comparison<T> comparison)
+    {
+        currentValue.Sort(comparison);
     }
 
     public void OnEnable()
@@ -160,7 +169,7 @@ public abstract class RuntimeSet<T> : ScriptableObject
     /// <summary>
     /// Resets the set back to the initial values
     /// </summary>
-    public void ClearSet()
+    public void Reset()
     {
         if (Persistent) return;
 
@@ -170,17 +179,25 @@ public abstract class RuntimeSet<T> : ScriptableObject
         {
             foreach (System.Delegate d in AfterItemAdded.GetInvocationList())
             {
-                AfterItemAdded -= (System.Action<T>)d;
+                AfterItemAdded -= (System.Action<T>) d;
             }
         }
 
         if (AfterItemRemoved != null) {
             foreach (System.Delegate d in AfterItemRemoved.GetInvocationList())
             {
-                AfterItemRemoved -= (System.Action<T>)d;
+                AfterItemRemoved -= (System.Action<T>) d;
             }
         }
+    }
 
+    public void Clear()
+    {
+        //Remove one at a time so we trigger all the appropriate events
+        while (currentValue.Count > 0)
+        {
+            Remove(currentValue[0]);
+        }
         AfterCleared?.Invoke();
     }
 
@@ -201,7 +218,7 @@ public abstract class RuntimeSet<T> : ScriptableObject
         if (subsetOf != null && startFull) currentValue.AddRange(subsetOf.currentValue);
         if (complement != null && subsetOf != null)
         {
-            complement.Value = subsetOf.Value.FindAll((item) => !Value.Contains(item));
+            complement.currentValue = subsetOf.currentValue.FindAll((item) => !currentValue.Contains(item));
         }
     }
 }

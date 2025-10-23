@@ -33,7 +33,7 @@ public class GainUnusedRoles : RoleAbility
     [Server]
     public void AfterAllRolesChosen()
     {
-        rejectedRoles.Value.Shuffle();
+        rejectedRoles.Shuffle();
         int pickedRoles = 0;
 
         for (int i = rejectedRoles.Value.Count - 1; pickedRoles < rolesToGain && i >= 0; i--)

@@ -10,7 +10,7 @@ public class NeverTarget : RoleAbility
 
     protected override void OnRoleGiven()
     {
-        waspPlayers.Value.Shuffle();
+        waspPlayers.Shuffle();
         foreach (HivePlayer ply in waspPlayers.Value)
         {
             ply.Target.OnVariableChanged += OnTargetChosen;
@@ -35,7 +35,7 @@ public class NeverTarget : RoleAbility
     {
         if (target != Owner) return;
 
-        beePlayers.Value.Shuffle();
+        beePlayers.Shuffle();
 
         foreach (HivePlayer ply in beePlayers.Value)
         {

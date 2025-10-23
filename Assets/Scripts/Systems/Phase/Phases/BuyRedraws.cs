@@ -33,7 +33,10 @@ public class BuyRedraws : GamePhase
     public override void Begin()
     {
         finishedPlayers = new();
-        playersOnMission.Value.ForEach(ply => EnableUI(ply.connectionToClient, true));
+        foreach (HivePlayer ply in playersOnMission)
+        {
+            EnableUI(ply.connectionToClient, true);
+        }
     }
 
     [TargetRpc]

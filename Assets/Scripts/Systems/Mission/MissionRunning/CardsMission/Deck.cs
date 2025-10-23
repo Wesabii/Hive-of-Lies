@@ -50,7 +50,7 @@ public class Deck
             DiscardPile.Remove(card);
         }
 
-        DrawPile.Value.Shuffle();
+        DrawPile.Shuffle();
     }
 
     /// <summary>
@@ -63,14 +63,14 @@ public class Deck
             if (card.DestroyOnDraw) continue;
             DrawPile.Add(card);
         }
-        Hand.Value = new();
+        Hand.Clear();
 
         foreach (Card card in Played)
         {
             if (card.DestroyOnDraw || card.DestroyOnPlay) continue;
             DrawPile.Add(card);
         }
-        Played.Value = new();
+        Played.Clear();
         Shuffle();
     }
 

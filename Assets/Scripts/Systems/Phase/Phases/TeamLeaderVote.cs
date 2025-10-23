@@ -43,7 +43,7 @@ public class TeamLeaderVote : GamePhase
 
     public override void Begin()
     {
-        allVotes.Value = new();
+        allVotes.Clear();
         voteTotal.Value = 0;
         voteBegin?.Invoke();
     }

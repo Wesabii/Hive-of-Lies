@@ -56,7 +56,7 @@ public class MissionResultPopup : NetworkBehaviour
             List<Card> played = new();
 
             //Show players on the mission what everyone played. Nobody else gets to see.
-            if (ShouldShowContributions(ply)) played = playedCards;
+            if (ShouldShowContributions(ply)) played.AddRange(playedCards.Value);
 
             CreatePopup(ply.connectionToClient, "", played, currentMission, cardsTotal, missionDifficulty);
         }

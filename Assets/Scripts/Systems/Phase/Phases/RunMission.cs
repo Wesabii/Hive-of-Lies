@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Mirror;
 using Unity.Services.Analytics;
+using System.Linq;
 
 public class RunMission : GamePhase
 {
@@ -93,8 +94,8 @@ public class MissionCompletedEvent: Unity.Services.Analytics.Event
     {
         MissionName = mission.MissionName;
         MissionResult = result.ToString();
-        WaspsOnMission = playersOnMission.Value.FindAll((ply) => ply.Team.Value.Team == Team.Wasp).Count;
-        BeesOnMission = playersOnMission.Value.FindAll((ply) => ply.Team.Value.Team == Team.Bee).Count;
+        WaspsOnMission = playersOnMission.Value.Where((ply) => ply.Team.Value.Team == Team.Wasp).Count();
+        BeesOnMission = playersOnMission.Value.Where((ply) => ply.Team.Value.Team == Team.Bee).Count();
         CardsTotal = totalCardValue;
         PlayerCount = playerCount;
     }

@@ -19,7 +19,7 @@ public class AlwaysATarget : RoleAbility
         }
 
         //Shuffle so we can be a random wasp's target
-        waspPlayers.Value.Shuffle();
+        waspPlayers.Shuffle();
         //If there are no wasps, then this ability doesn't do anything ig?
         if (waspPlayers.Value.Count == 0) return;
 

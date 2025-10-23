@@ -92,7 +92,7 @@ public class TeamLeaderPickPartners : GamePhase
     [Server]
     public override void Begin()
     {
-        playersSelected.Value = new();
+        playersSelected.Clear();
 
         foreach (PlayerButtonDropdownItem i in addItems) Destroy(i);
         foreach (PlayerButtonDropdownItem i in removeItems) Destroy(i);
@@ -233,7 +233,7 @@ public class TeamLeaderPickPartners : GamePhase
 
         foreach (HivePlayer ply in playersSelected.Value)
         {
-            if (!playersOnMission.Value.Contains(ply)) playersOnMission.Value.Add(ply);
+            if (!playersOnMission.Value.Contains(ply)) playersOnMission.Add(ply);
         };
 
         SetLockInActive(conn, false);

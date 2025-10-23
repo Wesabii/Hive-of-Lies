@@ -78,9 +78,9 @@ public class StandOrPass : GamePhase
 
     public override void Begin()
     {
-        standingPlayers.Value = new();
-        passedPlayers.Value = new();
-        playersOnMission.Value = new();
+        standingPlayers.Reset();
+        passedPlayers.Reset();
+        playersOnMission.Reset();
         totalFavourOfStanding = 0;
         teamLeader.Value = null;
 
@@ -203,13 +203,13 @@ public class StandOrPass : GamePhase
         Debug.Log($"The team leader has been set to {teamLeader.Value.DisplayName}");
 
         //All unsuccessful players get their favour back
-        standingPlayers.Value.ForEach(ply =>
+        foreach (HivePlayer ply in standingPlayers)
         {
             if (ply != teamLeader.Value)
             {
                 ply.Favour.Value += ply.NextStandCost;
             }
-        });
+        }
 
         End();
     }
@@ -220,7 +220,7 @@ public class StandOrPass : GamePhase
     [Server]
     void SortStandingList()
     {
-        standingPlayers.Value.Sort((a, b) =>
+        standingPlayers.Sort((a, b) =>
         {
             int result = a.Favour.Value.CompareTo(b.Favour);
             result *= -1;

@@ -157,7 +157,7 @@ public class HiveNetworkManager : NetworkManager
     [Server]
     public override void OnStopServer()
     {
-        allPlayers.Value = new();
+        allPlayers.Clear();
         alivePlayersByConnection.Value = new();
         playersByConnection.Value = new();
     }
@@ -238,7 +238,10 @@ public class HiveNetworkManager : NetworkManager
         playerCount.Value = allPlayers.Value.Count;
         if (scene != GameMode.Value.GameScene) return;
 
-        allPlayers.Value.ForEach(ply => ply.ResetValues());
+        foreach (HivePlayer ply in allPlayers.Value)
+        {
+            ply.ResetValues();
+        }
 
         Object[] variables = Resources.LoadAll("Variables");
 
@@ -250,7 +253,7 @@ public class HiveNetworkManager : NetworkManager
             bool isSet = IsAssignableToGenericType(variableType, typeof(RuntimeSet<>));
 
             if (isVariable) variableType.GetMethod(nameof(Variable<int>.OnEnable))?.Invoke(variables[i], new object[] { });
-            if (isSet) variableType.GetMethod(nameof(RuntimeSet<int>.ClearSet))?.Invoke(variables[i], new object[] { });
+            if (isSet) variableType.GetMethod(nameof(RuntimeSet<int>.Reset))?.Invoke(variables[i], new object[] { });
         }
     }
 

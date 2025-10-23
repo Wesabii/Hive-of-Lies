@@ -117,7 +117,7 @@ public class Buzz : GamePhase
             currentBuzzer.Value = null;
             foreach (PlayerButtonDropdownItem i in addButtons) Destroy(i.gameObject);
             addButtons = new();
-            playersSelected.Value = new();
+            playersSelected.Clear();
         }
 
         //Once all players have buzzed, anyone can buzz again
@@ -146,8 +146,8 @@ public class Buzz : GamePhase
     [Command(requiresAuthority = false)]
     void OnBuzz(NetworkConnectionToClient conn = null)
     {
-        playerVotes.Value = new();
-        playersSelected.Value = new();
+        playerVotes.Clear();
+        playersSelected.Clear();
         //If someone is currently buzzing
         if (currentBuzzer.Value != null) return;
         //If the player is dead / not in the game
@@ -383,8 +383,8 @@ public class Buzz : GamePhase
         }
 
         voteTotal.Value = 0;
-        playerVotes.Value = new();
-        playersSelected.Value = new();
+        playerVotes.Clear();
+        playersSelected.Clear();
         currentBuzzer.Value = null;
         StartBuzz();
     }

@@ -189,7 +189,7 @@ public class DecideMission : GamePhase
             }
         }
 
-        decidedMissionChoices.Value = choices;
+        decidedMissionChoices.AddRange(choices);
         onMissionChoicesDecided?.Invoke();
         CreateMissionCards(choices, difficutlyMod);
     }

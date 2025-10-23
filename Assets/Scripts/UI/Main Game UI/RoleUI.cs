@@ -56,7 +56,7 @@ public class RoleUI : NetworkBehaviour
     [Server]
     public void OnSetupFinished()
     {
-        allRoles.Value = new();
+        allRoles.Clear();
         foreach (KeyValuePair<NetworkConnection, HivePlayer> pair in playersByConnection.Value)
         {
             ReceiveRoleInfo(pair.Key, pair.Value.RoleChoices);

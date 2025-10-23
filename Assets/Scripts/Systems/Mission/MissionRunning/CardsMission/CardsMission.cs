@@ -95,7 +95,7 @@ public class CardsMission : MissionType
     {
         playedTotal.Value = 0;
         playersPlayed = new();
-        playedCards.Value = new();
+        playedCards.Clear();
         foreach (HivePlayer ply in playersOnMission)
         {
             ply.Deck.Value.Draw();

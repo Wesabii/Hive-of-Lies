@@ -70,9 +70,9 @@ public class Setup : GamePhase
     {
         Debug.Log("All players have entered the game. Beginning setup.");
 
-        roles.Value.Shuffle();
+        roles.Shuffle();
         //Shuffle the players so we can randomly assign teams
-        allPlayers.Value.Shuffle();
+        allPlayers.Shuffle();
         //Shuffle the roles so we can randomly dish them out to players
         //Roles.Shuffle();
         CreateButtons(allPlayers);
@@ -85,7 +85,7 @@ public class Setup : GamePhase
         Debug.Log("Setup Finished");
     }
 
-    void CreateButtons(List<HivePlayer> plys)
+    void CreateButtons(HivePlayerSet plys)
     {
         for (int i = 0; i < plys.Count; i++)
         {
@@ -181,13 +181,13 @@ public class Setup : GamePhase
     /// Assign a team to each player
     /// </summary>
     [Server]
-    void AssignTeams(List<HivePlayer> plys)
+    void AssignTeams(HivePlayerSet plys)
     {
-        beePlayers.Value = new();
-        waspPlayers.Value = new();
+        beePlayers.Clear();
+        waspPlayers.Clear();
         //Increments to determine whether a player should be an innocent or a traitor
         float teamCounter = 0;
-        plys.ForEach(ply =>
+        foreach (HivePlayer ply in plys)
         {
             ply.IsAlive.Value = true;
             teamCounter += traitorRatio;
@@ -207,7 +207,7 @@ public class Setup : GamePhase
 
             int waspTotal = Mathf.FloorToInt(playerCount * traitorRatio);
             DisplayTeamPopup(ply.connectionToClient, ply.Team.Value.Team, waspTotal);
-        });
+        }
     }
 
     [TargetRpc]
@@ -242,7 +242,7 @@ public class Setup : GamePhase
     /// Give players a selection of roles to choose from
     /// </summary>
     [Server]
-    void GiveRoleChoices(List<HivePlayer> plys)
+    void GiveRoleChoices(HivePlayerSet plys)
     {
         foreach (HivePlayer ply in plys)
         {
