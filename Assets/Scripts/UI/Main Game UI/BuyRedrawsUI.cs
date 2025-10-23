@@ -32,10 +32,7 @@ public class BuyRedrawsUI : MonoBehaviour
         drawCostText.text = cost.ToString();
         nextRedrawCost.Value = cost;
 
-        if (nextRedrawCost.Value > favour.Value)
-        {
-            addDrawButton.interactable = false;
-        }
+        addDrawButton.interactable = favour.Value >= nextRedrawCost.Value;
     }
 
     public void AddDraw()
