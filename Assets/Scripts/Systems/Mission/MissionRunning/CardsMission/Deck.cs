@@ -41,15 +41,12 @@ public class Deck
     /// </summary>
     public void Shuffle()
     {
-        for (int i = DiscardPile.Count-1; i >= 0; i--)
+        foreach (Card card in DiscardPile)
         {
-            Card card = DiscardPile[i];
-
-            if (!card.DestroyOnDraw) DrawPile.Add(card);
-
-            DiscardPile.Remove(card);
+            if (card.DestroyOnDraw) continue;
+            DrawPile.Add(card);
         }
-
+        DiscardPile.Clear();
         DrawPile.Shuffle();
     }
 
