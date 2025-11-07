@@ -22,13 +22,13 @@ public class DeckScreen : NetworkBehaviour
         {
             if (isDrawPile)
             {
-                pair.Value.Deck.Value.DrawPile.AfterItemRemoved += (card) => CardRemoved(pair.Key, card);
-                pair.Value.Deck.Value.DrawPile.AfterItemAdded += (card) => CardAdded(pair.Key, card);
+                pair.Value.Deck.Value.DrawPile.AfterItemRemoved += (card) => { if (!card.IsSecret) CardRemoved(pair.Key, card); };
+                pair.Value.Deck.Value.DrawPile.AfterItemAdded += (card) => { if (!card.IsSecret) CardAdded(pair.Key, card); };
             }
             else
             {
-                pair.Value.Deck.Value.DiscardPile.AfterItemRemoved += (card) => CardRemoved(pair.Key, card);
-                pair.Value.Deck.Value.DiscardPile.AfterItemAdded += (card) => CardAdded(pair.Key, card);
+                pair.Value.Deck.Value.DiscardPile.AfterItemRemoved += (card) => { if (!card.IsSecret) CardRemoved(pair.Key, card); };
+                pair.Value.Deck.Value.DiscardPile.AfterItemAdded += (card) => { if (!card.IsSecret) CardAdded(pair.Key, card); };
             }
         }
     }
