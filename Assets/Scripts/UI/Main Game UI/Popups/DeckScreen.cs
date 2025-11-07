@@ -13,7 +13,7 @@ public class DeckScreen : NetworkBehaviour
     [SerializeField] GameObject screen;
     [SerializeField] Transform cardPool;
 
-    List<CardDisplay> drawPile = new();
+    List<CardDisplay> cardList = new();
     #endregion
 
     private void Start()
@@ -36,32 +36,29 @@ public class DeckScreen : NetworkBehaviour
     [TargetRpc]
     void CardRemoved(NetworkConnection conn, Card card)
     {
-        if (card.IsSecret) return;
         CardDisplay display = null;
 
-        foreach (CardDisplay c in drawPile)
+        foreach (CardDisplay c in cardList)
         {
             //Only the visuals of the card really matter, since this is a purely clientside thing.
             if (c.GetCard().Sprite == card.Sprite) display = c;
         }
-
-        //If that card never showed up in their draw pile in the first place, we don't need to do anything else.
+        //Wasn't in the list anyway
         if (display == null) return;
 
         //Otherwise destroy it.
-        drawPile.Remove(display);
+        cardList.Remove(display);
         Destroy(display.gameObject);
     }
 
     [TargetRpc]
     void CardAdded(NetworkConnection conn, Card card)
     {
-        if (card.IsSecret) return;
         CardDisplay display = Instantiate(cardDisplay).GetComponent<CardDisplay>();
         display.SetCard(card);
         display.transform.SetParent(cardPool);
 
-        //Player deck should always appear sorted by value
+        //Sort by value
         for (int i = 0; i < cardPool.childCount; i++)
         {
             CardDisplay child = cardPool.GetChild(i).GetComponent<CardDisplay>();
@@ -70,7 +67,7 @@ public class DeckScreen : NetworkBehaviour
             if (child.GetCard().Value >= card.Value) display.transform.SetSiblingIndex(i);
         }
 
-        drawPile.Add(display);
+        cardList.Add(display);
     }
 
     public void Toggle()
