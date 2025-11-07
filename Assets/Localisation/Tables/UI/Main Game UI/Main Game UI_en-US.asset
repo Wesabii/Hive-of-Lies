@@ -141,10 +141,19 @@ MonoBehaviour:
       and win the game!'
     m_Metadata:
       m_Items: []
+  - m_Id: 472506765312
+    m_Localized: '{0} is the Team Leader'
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds:
     - rid: 2288630729750085703
       type: {class: SmartFormatTag, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
       data:
-        m_Entries: 001059cbb100000000109984b5000000001099ea47ec0b00001019012a020000
+        m_Entries: 
+        m_SharedEntries:
+        - id: 763620823040
+        - id: 779613704192
+        - id: 3356018366550016
+        - id: 2379430301696
