@@ -27,13 +27,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1805870746189362716}
+  serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 986.4814, y: 559.02515, z: 4.061875}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &5366578028593055209
 MonoBehaviour:
@@ -111,6 +111,7 @@ MonoBehaviour:
   beeChoices: {fileID: 11400000, guid: dbe721ec50fa6d54fb8ce9486c66aac6, type: 2}
   waspChoices: {fileID: 11400000, guid: 3579767e5fb40724e8c757b965a9da96, type: 2}
   traitorRatio: {fileID: 11400000, guid: 345666eca88bcda4ba738d6fa2fb1795, type: 2}
+  decksPerPlayerCount: {fileID: 11400000, guid: 5af3130ab0ecc484eaf0f48bf371f86d, type: 2}
   roles: {fileID: 11400000, guid: fe7581b39c653bc48bc998c190d910bf, type: 2}
   allPlayers: {fileID: 11400000, guid: 0c33edbdca3ad504da00baa02cbb39bd, type: 2}
   waspPlayers: {fileID: 11400000, guid: 059709481d8b4074d883dc2146998f3c, type: 2}

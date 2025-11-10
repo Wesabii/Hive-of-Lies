@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.Localization;
 using Steamworks;
 using Mirror;
+using System;
 
 public class Setup : GamePhase
 {
@@ -15,6 +16,9 @@ public class Setup : GamePhase
 
     [Tooltip("The ratio of traitors to innocents")]
     [SerializeField] FloatVariable traitorRatio;
+
+    [Tooltip("The starting decks for each player by the player count")]
+    [SerializeField] CardSetSet decksPerPlayerCount;
 
     [Tooltip("All the roles that can appear in the game")]
     [SerializeField] RoleDataSet roles;
@@ -78,6 +82,8 @@ public class Setup : GamePhase
         CreateButtons(allPlayers);
 
         AssignTeams(allPlayers);
+
+        GiveDecks(allPlayers);
 
         GiveRoleChoices(allPlayers);
 
@@ -236,6 +242,23 @@ public class Setup : GamePhase
         float x = popupX.Value > 0 ? popupX : Screen.width/2;
         float y = popupY.Value > 0 ? popupY : Screen.height/2;
         teamPopup.transform.GetChild(0).position = new Vector3(x, y, 1);
+    }
+
+    [Server]
+    void GiveDecks(HivePlayerSet plys)
+    {
+        if (playerCount >= decksPerPlayerCount.Count)
+        {
+            throw new Exception("No starting deck found for player count");
+        }
+        CardSet startingDeck = decksPerPlayerCount.Value[playerCount];
+        foreach (HivePlayer ply in plys)
+        {
+            foreach (Card card in startingDeck.Value)
+            {
+                ply.Deck.Value.DrawPile.Add(Instantiate(card));
+            }
+        }
     }
 
     /// <summary>

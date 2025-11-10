@@ -1,0 +1,45 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 102277fdf32b82b4d9198047f627a18a, type: 3}
+  m_Name: 7 player deck
+  m_EditorClassIdentifier: Assembly-CSharp::CardSet
+  initialValue:
+  - {fileID: 11400000, guid: ae5b5cef249fc05479c3395575e81da5, type: 2}
+  - {fileID: 11400000, guid: 7b05d064ae503af4ca5c6e6d184537b4, type: 2}
+  - {fileID: 11400000, guid: 7b05d064ae503af4ca5c6e6d184537b4, type: 2}
+  - {fileID: 11400000, guid: 7b05d064ae503af4ca5c6e6d184537b4, type: 2}
+  - {fileID: 11400000, guid: ecff655d9d8db1449807bd4625f3c20a, type: 2}
+  - {fileID: 11400000, guid: ecff655d9d8db1449807bd4625f3c20a, type: 2}
+  - {fileID: 11400000, guid: ecff655d9d8db1449807bd4625f3c20a, type: 2}
+  - {fileID: 11400000, guid: ecff655d9d8db1449807bd4625f3c20a, type: 2}
+  - {fileID: 11400000, guid: 6f1c944c4f7991949a7854b4a3cdc0f5, type: 2}
+  - {fileID: 11400000, guid: 6f1c944c4f7991949a7854b4a3cdc0f5, type: 2}
+  - {fileID: 11400000, guid: 6f1c944c4f7991949a7854b4a3cdc0f5, type: 2}
+  - {fileID: 11400000, guid: 6f1c944c4f7991949a7854b4a3cdc0f5, type: 2}
+  currentValue:
+  - {fileID: 11400000, guid: 7b05d064ae503af4ca5c6e6d184537b4, type: 2}
+  - {fileID: 11400000, guid: 7b05d064ae503af4ca5c6e6d184537b4, type: 2}
+  - {fileID: 11400000, guid: ecff655d9d8db1449807bd4625f3c20a, type: 2}
+  - {fileID: 11400000, guid: ecff655d9d8db1449807bd4625f3c20a, type: 2}
+  - {fileID: 11400000, guid: ecff655d9d8db1449807bd4625f3c20a, type: 2}
+  - {fileID: 11400000, guid: 6f1c944c4f7991949a7854b4a3cdc0f5, type: 2}
+  - {fileID: 11400000, guid: 6f1c944c4f7991949a7854b4a3cdc0f5, type: 2}
+  - {fileID: 11400000, guid: 6f1c944c4f7991949a7854b4a3cdc0f5, type: 2}
+  - {fileID: 11400000, guid: 6f1c944c4f7991949a7854b4a3cdc0f5, type: 2}
+  subsetOf: {fileID: 0}
+  startFull: 0
+  extensionOf: {fileID: 0}
+  complement: {fileID: 0}
+  server: 0
+  client: 0
+  Persistent: 1
+  tooltip: 
