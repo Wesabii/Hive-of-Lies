@@ -13,9 +13,10 @@ public class DrawCostCapped : RoleAbility
     {
         if (buyRedraws != null) return;
         if (phase is not BuyRedraws) return;
+        if (isClient) return;
         buyRedraws = phase as BuyRedraws;
         buyRedraws.onCalculateCost += ModifyCalculation;
-        if (!isClient) RegisterPhaseClient(Owner.connectionToClient, phase as BuyRedraws);
+        RegisterPhaseClient(Owner.connectionToClient, phase as BuyRedraws);
     }
 
     [TargetRpc]
