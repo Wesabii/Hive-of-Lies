@@ -54,12 +54,6 @@ public class RoleData : ScriptableObject
     public int StartingFavour { get; private set; } = 10;
 
     /// <summary>
-    /// The roles starting deck of cards
-    /// </summary>
-    [field: SerializeField]
-    public List<Card> StartingDeck { get; private set; }
-
-    /// <summary>
     /// The logic for the roles ability
     /// </summary>
     [field: SerializeField]

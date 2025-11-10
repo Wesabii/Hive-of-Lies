@@ -32,16 +32,6 @@ MonoBehaviour:
     m_LocalVariables: []
   <Team>k__BackingField: 1
   <StartingFavour>k__BackingField: 10
-  <StartingDeck>k__BackingField:
-  - {fileID: 11400000, guid: ae5b5cef249fc05479c3395575e81da5, type: 2}
-  - {fileID: 11400000, guid: 7b05d064ae503af4ca5c6e6d184537b4, type: 2}
-  - {fileID: 11400000, guid: 7b05d064ae503af4ca5c6e6d184537b4, type: 2}
-  - {fileID: 11400000, guid: ecff655d9d8db1449807bd4625f3c20a, type: 2}
-  - {fileID: 11400000, guid: ecff655d9d8db1449807bd4625f3c20a, type: 2}
-  - {fileID: 11400000, guid: ecff655d9d8db1449807bd4625f3c20a, type: 2}
-  - {fileID: 11400000, guid: 6f1c944c4f7991949a7854b4a3cdc0f5, type: 2}
-  - {fileID: 11400000, guid: 6f1c944c4f7991949a7854b4a3cdc0f5, type: 2}
-  - {fileID: 11400000, guid: 6f1c944c4f7991949a7854b4a3cdc0f5, type: 2}
   <Abilities>k__BackingField:
   - {fileID: 5724992533383566400, guid: f691aaf909ffeed42a4eb2204f7584fd, type: 3}
   <PlayersRequired>k__BackingField: 0
