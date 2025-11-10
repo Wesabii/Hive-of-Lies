@@ -5,7 +5,7 @@ using UnityEngine;
 public class StaticDeck : RoleAbility
 {
 
-    public void OnDeckCreated()
+    public void SubscribeToEvents()
     {
         Owner.Deck.Value.DrawPile.OnItemAdded += PreventDeckAdd;
         Owner.Deck.Value.DiscardPile.OnItemAdded += PreventDiscardAdd;
