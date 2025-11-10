@@ -36,6 +36,7 @@ MonoBehaviour:
   <Team>k__BackingField: 1
   <StartingFavour>k__BackingField: 4
   <Abilities>k__BackingField:
+  - {fileID: 9078889262912674118, guid: 4ca1f842251c1044d821fe37773c413c, type: 3}
   - {fileID: 9078889262912674118, guid: 5502bd8ed8628e744976853a6fe249d2, type: 3}
   <PlayersRequired>k__BackingField: 0
   <Sprite>k__BackingField: {fileID: 21300000, guid: 9f987bc44b10bfb428db901fc445c554, type: 3}
