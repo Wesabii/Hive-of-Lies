@@ -284,6 +284,16 @@ MonoBehaviour:
     m_Localized: Your deck has a -1 card
     m_Metadata:
       m_Items: []
+  - m_Id: 293149229149900800
+    m_Localized: Centrist
+    m_Metadata:
+      m_Items: []
+  - m_Id: 293149326415810560
+    m_Localized: 'You cannot vote.
+
+      You cannot contribute to missions.'
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds:
