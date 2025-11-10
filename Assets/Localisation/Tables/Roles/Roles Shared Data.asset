@@ -212,7 +212,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 2494126408404992
-    m_Key: New Entry
+    m_Key: saboteurName
     m_Metadata:
       m_Items: []
   - m_Id: 2494194733617152
@@ -233,6 +233,10 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 11199875519156224
     m_Key: tutorialPoliticianDescription
+    m_Metadata:
+      m_Items: []
+  - m_Id: 293148328964182016
+    m_Key: saboteurDescription
     m_Metadata:
       m_Items: []
   m_Metadata:

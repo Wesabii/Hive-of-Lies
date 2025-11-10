@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &6625753491725769877
+--- !u!1 &1092268232898671020
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,13 +8,10 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 5330076083166699123}
-  - component: {fileID: 3194974027864302717}
-  - component: {fileID: 3239059511047694975}
-  - component: {fileID: 5193124207132491955}
-  - component: {fileID: 8151241531716396656}
-  - component: {fileID: 5348990151035299960}
-  - component: {fileID: -3297580634145260500}
+  - component: {fileID: 6576325751750526995}
+  - component: {fileID: -4681817936677500337}
+  - component: {fileID: -576233893370963521}
+  - component: {fileID: -1218275175325444131}
   m_Layer: 0
   m_Name: Saboteur Ability
   m_TagString: Untagged
@@ -22,28 +19,28 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &5330076083166699123
+--- !u!4 &6576325751750526995
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6625753491725769877}
+  m_GameObject: {fileID: 1092268232898671020}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3194974027864302717
+--- !u!114 &-4681817936677500337
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6625753491725769877}
+  m_GameObject: {fileID: 1092268232898671020}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9b91ecbcc199f4492b9a91e820070131, type: 3}
@@ -52,135 +49,46 @@ MonoBehaviour:
   sceneId: 0
   serverOnly: 0
   visible: 0
-  m_AssetId: d168147dbf3d50445a02888ba4986e4b
+  m_AssetId: ea0f719eb3834944bbfab09b94fd21ec
   hasSpawned: 0
---- !u!114 &3239059511047694975
+--- !u!114 &-576233893370963521
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6625753491725769877}
+  m_GameObject: {fileID: 1092268232898671020}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1d992aefb126df148a88e425c1199171, type: 3}
+  m_Script: {fileID: 11500000, guid: 7056f7c02cfd7e048bdd6b0321bdc6e0, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: 
-  Events:
-  - {fileID: 11400000, guid: 84bfa7269e26ce64280be9e1b752ac5b, type: 2}
-  Response:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 5193124207132491955}
-        m_TargetAssemblyTypeName: CreateButton, Assembly-CSharp
-        m_MethodName: SetButtonActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
---- !u!114 &5193124207132491955
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6625753491725769877}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 908f6d1e953e1e24194c84febf5209f3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_EditorClassIdentifier: Assembly-CSharp::ModifyDeck
   syncMode: 0
   syncInterval: 0.1
   active: 1
-  button: {fileID: 1107423568599795120, guid: 636febd51049eaf408fc7d1172356028, type: 3}
-  hasCost: 1
-  cost: 6
-  text: Sabotage
-  ClientClicked:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 5193124207132491955}
-        m_TargetAssemblyTypeName: CreateButton, Assembly-CSharp
-        m_MethodName: SetButtonActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  ServerClicked:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: -3297580634145260500}
-        m_TargetAssemblyTypeName: TempModifyIntVar, Assembly-CSharp
-        m_MethodName: Modify
-        m_Mode: 3
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 1
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
---- !u!114 &8151241531716396656
+  cardsToAdd:
+  - {fileID: 11400000, guid: 786492d736f9eb04c86ff40fca24df94, type: 2}
+  cardsToRemove: []
+--- !u!114 &-1218275175325444131
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6625753491725769877}
+  m_GameObject: {fileID: 1092268232898671020}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1d992aefb126df148a88e425c1199171, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Events:
-  - {fileID: 11400000, guid: 12992b83150649a40b0b24a5c8950cc8, type: 2}
+  - {fileID: 11400000, guid: 043b4861c64dcae45ab6222f65a8b680, type: 2}
   Response:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5193124207132491955}
-        m_TargetAssemblyTypeName: CreateButton, Assembly-CSharp
-        m_MethodName: SetButtonActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
---- !u!114 &5348990151035299960
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6625753491725769877}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1d992aefb126df148a88e425c1199171, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Events:
-  - {fileID: 11400000, guid: 6e64cb0c71b5cc74f856d6d531cbc9e9, type: 2}
-  Response:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: -3297580634145260500}
-        m_TargetAssemblyTypeName: TempModifyIntVar, Assembly-CSharp
-        m_MethodName: ResetVar
+      - m_Target: {fileID: -576233893370963521}
+        m_TargetAssemblyTypeName: ModifyDeck, Assembly-CSharp
+        m_MethodName: OnPick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -190,16 +98,3 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &-3297580634145260500
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6625753491725769877}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e353471447692204ebc08ab1f4ed7543, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  variable: {fileID: 11400000, guid: ec691bcc6c9cf504cb09faadebadf0b6, type: 2}
