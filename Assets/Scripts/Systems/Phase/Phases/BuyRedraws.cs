@@ -35,6 +35,7 @@ public class BuyRedraws : GamePhase
         finishedPlayers = new();
         foreach (HivePlayer ply in playersOnMission)
         {
+            ply.RedrawsLeft.Value = 0;
             EnableUI(ply.connectionToClient, true);
         }
     }
