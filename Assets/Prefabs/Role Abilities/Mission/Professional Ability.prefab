@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6576325751750526995}
   - component: {fileID: -4681817936677500337}
-  - component: {fileID: -7216648899451901932}
+  - component: {fileID: -576233893370963521}
   - component: {fileID: -1218275175325444131}
   m_Layer: 0
   m_Name: Professional Ability
@@ -26,13 +26,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1092268232898671020}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &-4681817936677500337
 MonoBehaviour:
@@ -51,7 +51,7 @@ MonoBehaviour:
   visible: 0
   m_AssetId: e0cfc6537c34cdb49bc9486a7af2a6e4
   hasSpawned: 0
---- !u!114 &-7216648899451901932
+--- !u!114 &-576233893370963521
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -60,14 +60,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 1092268232898671020}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 45bae03dda2a41e408de4db4d861aa8c, type: 3}
+  m_Script: {fileID: 11500000, guid: 7056f7c02cfd7e048bdd6b0321bdc6e0, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: 
+  m_EditorClassIdentifier: Assembly-CSharp::ModifyDeck
   syncMode: 0
   syncInterval: 0.1
   active: 1
-  deckStrengthModifier: 1
-  maxCardValue: 5
+  cardsToAdd:
+  - {fileID: 11400000, guid: ecff655d9d8db1449807bd4625f3c20a, type: 2}
+  - {fileID: 11400000, guid: ecff655d9d8db1449807bd4625f3c20a, type: 2}
+  - {fileID: 11400000, guid: ecff655d9d8db1449807bd4625f3c20a, type: 2}
+  cardsToRemove:
+  - {fileID: 11400000, guid: 6f1c944c4f7991949a7854b4a3cdc0f5, type: 2}
+  - {fileID: 11400000, guid: 6f1c944c4f7991949a7854b4a3cdc0f5, type: 2}
+  - {fileID: 11400000, guid: 6f1c944c4f7991949a7854b4a3cdc0f5, type: 2}
 --- !u!114 &-1218275175325444131
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -85,9 +91,9 @@ MonoBehaviour:
   Response:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: -7216648899451901932}
-        m_TargetAssemblyTypeName: StrongerDeck, Assembly-CSharp
-        m_MethodName: AfterDeckConstructed
+      - m_Target: {fileID: -576233893370963521}
+        m_TargetAssemblyTypeName: ModifyDeck, Assembly-CSharp
+        m_MethodName: OnPick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

@@ -127,7 +127,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 4439668232192
-    m_Localized: Your starting deck is stronger
+    m_Localized: Your +0 cards are upgraded to +1 cards
     m_Metadata:
       m_Items: []
   - m_Id: 4535000567808
@@ -282,4 +282,23 @@ MonoBehaviour:
     - rid: 2288630715881357315
       type: {class: SmartFormatTag, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
       data:
-        m_Entries: 001019755c0000000010d9662804000000105923d3030000001019458c0400000010d9103f0400000010d96ae23a07000010d991a303000000105962160000000010d96c3403000000105948ba0300000010d965a80400000010197448000000001099afd45b060000109943b56506000010997a856b06000010d94001c90800001059f18c180b000010d9393aca2700
+        m_Entries: 
+        m_SharedEntries:
+        - id: 397101568000
+        - id: 4571570704384
+        - id: 4205366022144
+        - id: 5000501202944
+        - id: 4668912111616
+        - id: 2035068966604800
+        - id: 4001061474304
+        - id: 96139284480
+        - id: 3523699347456
+        - id: 4098612596736
+        - id: 5121309741056
+        - id: 311185444864
+        - id: 1789818897502208
+        - id: 1800679057854464
+        - id: 1807070891937792
+        - id: 2472807033802752
+        - id: 3123218367451136
+        - id: 11199875519156224

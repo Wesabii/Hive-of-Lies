@@ -13,28 +13,10 @@ MonoBehaviour:
   m_Name: Localization-Assets-Shared
   m_EditorClassIdentifier: 
   m_GroupName: Localization-Assets-Shared
-  m_Data:
-    m_SerializedData: []
   m_GUID: 8c2465e6b8adb7e45956d216c18cb1a5
   m_SerializeEntries:
-  - m_GUID: 3480022117d3dd74681aedbb38fe7f5d
-    m_Address: Assets/Localisation Settings/Tables/Test Shared Data.asset
-    m_ReadOnly: 1
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 92db3fd3ce46a924a8baae6d492cccfd
-    m_Address: Assets/Localisation/Tables/Lobby/Lobby Shared Data.asset
-    m_ReadOnly: 1
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 6f8c779fc0e0fa045a32d0626196818f
-    m_Address: Assets/Localisation/Tables/Roles/Roles Shared Data.asset
-    m_ReadOnly: 1
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: e2e5afe656f95c841ab5abe21481d253
-    m_Address: Assets/Localisation/Tables/General/Ordinal Numbers/Ordinal Numbers
-      Shared Data.asset
+  - m_GUID: 1311fef112061324cafb5b9412876990
+    m_Address: Assets/Localisation/Tables/UI/Main Game UI/Main Game UI Shared Data.asset
     m_ReadOnly: 1
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -44,9 +26,8 @@ MonoBehaviour:
     m_ReadOnly: 1
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: e68207947c4a54f4aada1a8c2887bc52
-    m_Address: Assets/Localisation/Tables/Mission Effects/Mission Effects Shared
-      Data.asset
+  - m_GUID: 232ac371eefbd954381d73efbc815390
+    m_Address: Assets/Localisation/Tables/General/Misc Words/Misc Words Shared Data.asset
     m_ReadOnly: 1
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -55,18 +36,18 @@ MonoBehaviour:
     m_ReadOnly: 1
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 8db8ba50f66e06a48b758a050e1bf923
-    m_Address: Assets/Localisation/Tables/General/Useful Words/Verbs Shared Data.asset
+  - m_GUID: 3480022117d3dd74681aedbb38fe7f5d
+    m_Address: Assets/Localisation Settings/Tables/Test Shared Data.asset
     m_ReadOnly: 1
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: f7b9ba7403b6e444abe9ef45700935e3
-    m_Address: Assets/Localisation/Tables/Missions/Missions Shared Data.asset
+  - m_GUID: 37fb485e800c74042bca6c57a5ad8759
+    m_Address: Assets/Localisation/Tables/Roles/Target Hints Shared Data.asset
     m_ReadOnly: 1
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 1311fef112061324cafb5b9412876990
-    m_Address: Assets/Localisation/Tables/UI/Main Game UI/Main Game UI Shared Data.asset
+  - m_GUID: 42118fc40b6f7cb43a14348a9babd447
+    m_Address: Assets/Localisation/Tables/UI/Tutorial/Tutorial Shared Data.asset
     m_ReadOnly: 1
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -75,8 +56,18 @@ MonoBehaviour:
     m_ReadOnly: 1
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: cb823830fb77d624cb4f84502a7f8732
-    m_Address: Assets/Localisation/Tables/Game Modes/Game Modes Shared Data.asset
+  - m_GUID: 6f8c779fc0e0fa045a32d0626196818f
+    m_Address: Assets/Localisation/Tables/Roles/Roles Shared Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8db8ba50f66e06a48b758a050e1bf923
+    m_Address: Assets/Localisation/Tables/General/Useful Words/Verbs Shared Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 92db3fd3ce46a924a8baae6d492cccfd
+    m_Address: Assets/Localisation/Tables/Lobby/Lobby Shared Data.asset
     m_ReadOnly: 1
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -86,18 +77,25 @@ MonoBehaviour:
     m_ReadOnly: 1
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 42118fc40b6f7cb43a14348a9babd447
-    m_Address: Assets/Localisation/Tables/UI/Tutorial/Tutorial Shared Data.asset
+  - m_GUID: cb823830fb77d624cb4f84502a7f8732
+    m_Address: Assets/Localisation/Tables/Game Modes/Game Modes Shared Data.asset
     m_ReadOnly: 1
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 232ac371eefbd954381d73efbc815390
-    m_Address: Assets/Localisation/Tables/General/Misc Words/Misc Words Shared Data.asset
+  - m_GUID: e2e5afe656f95c841ab5abe21481d253
+    m_Address: Assets/Localisation/Tables/General/Ordinal Numbers/Ordinal Numbers
+      Shared Data.asset
     m_ReadOnly: 1
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 37fb485e800c74042bca6c57a5ad8759
-    m_Address: Assets/Localisation/Tables/Roles/Target Hints Shared Data.asset
+  - m_GUID: e68207947c4a54f4aada1a8c2887bc52
+    m_Address: Assets/Localisation/Tables/Mission Effects/Mission Effects Shared
+      Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f7b9ba7403b6e444abe9ef45700935e3
+    m_Address: Assets/Localisation/Tables/Missions/Missions Shared Data.asset
     m_ReadOnly: 1
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0

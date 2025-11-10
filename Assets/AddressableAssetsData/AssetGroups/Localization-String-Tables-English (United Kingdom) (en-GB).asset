@@ -13,33 +13,10 @@ MonoBehaviour:
   m_Name: Localization-String-Tables-English (United Kingdom) (en-GB)
   m_EditorClassIdentifier: 
   m_GroupName: Localization-String-Tables-English (United Kingdom) (en-GB)
-  m_Data:
-    m_SerializedData: []
   m_GUID: 79e8954fe7bdacf4881722827acef623
   m_SerializeEntries:
-  - m_GUID: 3d30233846e56bb4594c3393a0e33b21
-    m_Address: Menu_en-GB
-    m_ReadOnly: 1
-    m_SerializedLabels:
-    - Locale-en-GB
-    - Preload
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 686584739331b9840b922c6f26cca5fe
-    m_Address: Lobby_en-GB
-    m_ReadOnly: 1
-    m_SerializedLabels:
-    - Locale-en-GB
-    - Preload
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: e2a8284ec5b72a54c83c72a74ef6a740
-    m_Address: Roles_en-GB
-    m_ReadOnly: 1
-    m_SerializedLabels:
-    - Locale-en-GB
-    - Preload
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 3a28d277fe4942746ae6a588c267055c
-    m_Address: Ordinal Numbers_en-GB
+  - m_GUID: 0d3056d5bca90f14785ec1dd615fa87f
+    m_Address: Game Modes_en-GB
     m_ReadOnly: 1
     m_SerializedLabels:
     - Locale-en-GB
@@ -52,13 +29,6 @@ MonoBehaviour:
     - Locale-en-GB
     - Preload
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 50811dc68d82db4469908aaa7effbb9e
-    m_Address: Mission Effects_en-GB
-    m_ReadOnly: 1
-    m_SerializedLabels:
-    - Locale-en-GB
-    - Preload
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 2b17309d852600040aaa2adc718fbd00
     m_Address: Game Terms_en-GB
     m_ReadOnly: 1
@@ -66,8 +36,15 @@ MonoBehaviour:
     - Locale-en-GB
     - Preload
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: ebba515ba9de3fb4b8209d224e1608cc
-    m_Address: Verbs_en-GB
+  - m_GUID: 3a28d277fe4942746ae6a588c267055c
+    m_Address: Ordinal Numbers_en-GB
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en-GB
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3d30233846e56bb4594c3393a0e33b21
+    m_Address: Menu_en-GB
     m_ReadOnly: 1
     m_SerializedLabels:
     - Locale-en-GB
@@ -80,36 +57,8 @@ MonoBehaviour:
     - Locale-en-GB
     - Preload
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 7daa49e284c8aaf4097cc26c9e46758a
-    m_Address: Main Game UI_en-GB
-    m_ReadOnly: 1
-    m_SerializedLabels:
-    - Locale-en-GB
-    - Preload
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 4941b97a8002a2b49b5bcfe2057c3790
     m_Address: Nouns_en-GB
-    m_ReadOnly: 1
-    m_SerializedLabels:
-    - Locale-en-GB
-    - Preload
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 0d3056d5bca90f14785ec1dd615fa87f
-    m_Address: Game Modes_en-GB
-    m_ReadOnly: 1
-    m_SerializedLabels:
-    - Locale-en-GB
-    - Preload
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: a428519d89f12014a90aa3ac2287df5f
-    m_Address: Buzz Missions_en-GB
-    m_ReadOnly: 1
-    m_SerializedLabels:
-    - Locale-en-GB
-    - Preload
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 7f102aa4e8482524e885786871c57f6a
-    m_Address: Tutorial_en-GB
     m_ReadOnly: 1
     m_SerializedLabels:
     - Locale-en-GB
@@ -122,8 +71,57 @@ MonoBehaviour:
     - Locale-en-GB
     - Preload
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 50811dc68d82db4469908aaa7effbb9e
+    m_Address: Mission Effects_en-GB
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en-GB
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 686584739331b9840b922c6f26cca5fe
+    m_Address: Lobby_en-GB
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en-GB
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 696293dbdb82a0a4ba7a311b468c3b81
     m_Address: Target Hints_en-GB
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en-GB
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7daa49e284c8aaf4097cc26c9e46758a
+    m_Address: Main Game UI_en-GB
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en-GB
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7f102aa4e8482524e885786871c57f6a
+    m_Address: Tutorial_en-GB
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en-GB
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a428519d89f12014a90aa3ac2287df5f
+    m_Address: Buzz Missions_en-GB
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en-GB
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e2a8284ec5b72a54c83c72a74ef6a740
+    m_Address: Roles_en-GB
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en-GB
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ebba515ba9de3fb4b8209d224e1608cc
+    m_Address: Verbs_en-GB
     m_ReadOnly: 1
     m_SerializedLabels:
     - Locale-en-GB
