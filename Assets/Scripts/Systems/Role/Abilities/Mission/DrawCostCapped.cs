@@ -1,21 +1,19 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using Steamworks;
 using Mirror;
 
 public class DrawCostCapped : RoleAbility
 {
     [SerializeField] int maxCost;
-    [SerializeField] BuyRedraws buyRedraws;
+    private BuyRedraws buyRedraws;
 
+    [Server]
     public void RegisterPhase(GamePhase phase)
     {
         if (buyRedraws != null) return;
         if (phase is not BuyRedraws) return;
-        if (isClient) return;
         buyRedraws = phase as BuyRedraws;
         buyRedraws.onCalculateCost += ModifyCalculation;
+        if (isClient) return; //Prevent the host from registering twice
         RegisterPhaseClient(Owner.connectionToClient, phase as BuyRedraws);
     }
 
@@ -27,9 +25,8 @@ public class DrawCostCapped : RoleAbility
 
     private void ModifyCalculation(HivePlayer ply, int numDraws, ref int cost)
     {
-        if (isClient || ply == Owner)
-        {
-            cost = Mathf.Min(maxCost, cost);
-        }
+        //If the player is null, we assume whoever receives this is the right person
+        if (ply != Owner && ply != null) return;
+        cost = Mathf.Min(maxCost, cost);
     }
 }
