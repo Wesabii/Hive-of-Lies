@@ -294,6 +294,17 @@ MonoBehaviour:
       You cannot contribute to missions.'
     m_Metadata:
       m_Items: []
+  - m_Id: 293606595723964416
+    m_Localized: Sleepy Bee
+    m_Metadata:
+      m_Items: []
+  - m_Id: 293606683129065472
+    m_Localized: 'Your starting deck is weak.
+
+      When the wasps are one point
+      away from victory, your deck is upgraded.'
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds:

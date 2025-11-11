@@ -247,6 +247,14 @@ MonoBehaviour:
     m_Key: centristDescription
     m_Metadata:
       m_Items: []
+  - m_Id: 293606595723964416
+    m_Key: sleepyBeeName
+    m_Metadata:
+      m_Items: []
+  - m_Id: 293606683129065472
+    m_Key: sleepyBeeDescription
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:
