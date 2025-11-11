@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
@@ -12,8 +13,9 @@ public class PsychicAbility : RoleAbility
         Owner.RedrawsLeft.AfterVariableChanged += (_) => OnOwnerDraw();
     }
 
-    public void OnGamePhaseRegistered(GamePhase phase)
+    public void RegisterMission(GamePhase phase)
     {
+        if (mission != null) return;
         if (phase is not RunMission) return;
         if ((phase as RunMission).mission is not CardsMission) return;
         mission = (phase as RunMission).mission as CardsMission;
