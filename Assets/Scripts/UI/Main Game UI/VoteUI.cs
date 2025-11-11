@@ -20,9 +20,43 @@ public class VoteUI : MonoBehaviour
 
     [SerializeField] GameObject voteUI;
 
-    private int upvoteCost;
-    private int downvoteCost;
-    private int numVotes;
+    private int _upvoteCost;
+    private int upvoteCost
+    { 
+        get { return _upvoteCost; }
+        set
+        {
+            _upvoteCost = value;
+            yesCost.text = value < 0 ? $"+{-value}" : $"{value}";
+            yesVote.interactable = value <= favour || value <= 0;
+        }
+    }
+    private int _downvoteCost;
+    private int downvoteCost
+    {
+        get { return _downvoteCost; }
+        set
+        {
+            _downvoteCost = value;
+            noCost.text = value < 0 ? $"+{-value}" : $"{value}";
+            noVote.interactable = value <= favour || value <= 0;
+        }
+    }
+    private int _numVotes;
+    private int numVotes
+    {
+        get { return _numVotes; }
+        set
+        {
+            _numVotes = value;
+            int totalVotes = numVotes;
+            OnVoteChange?.Invoke(ref totalVotes);
+            voteNumber.text = Mathf.Abs(totalVotes).ToString();
+
+            submitThumb.localScale = new Vector3(1, (totalVotes >= 0 ? 1f : -1f), 1);
+            submitButton.interactable = numVotes != 0;
+        }
+    }
 
     public delegate int VoteCostCalculation(bool isUpvote, int numVotes);
     private VoteCostCalculation getVoteCost;
@@ -39,56 +73,21 @@ public class VoteUI : MonoBehaviour
     [SerializeField] BoolVariable alive;
     #endregion
 
-    /// <summary>
-    /// Called when the vote starts
-    /// </summary>
-    /// <param name="msg"></param>
     public void VoteStarted()
     {
         if (!alive) return;
-        voteUI.SetActive(true);
         numVotes = 0;
+        upvoteCost = getVoteCost(true, 0);
+        downvoteCost = getVoteCost(false, 0);
+        voteUI.SetActive(true);
     }
 
-    /// <summary>
-    /// Called when a player increases their vote (upvotes)
-    /// </summary>
-    public void IncreaseVote()
+    public void ChangeVote(bool upvote)
     {
-        numVotes++;
-        favour.Value -= upvoteCost;
-
-        ChangeVote();
-    }
-
-    /// <summary>
-    /// Called when a player deceases their vote (downvotes)
-    /// </summary>
-    public void DecreaseVote()
-    {
-        numVotes--;
-        favour.Value -= downvoteCost;
-
-        ChangeVote();
-    }
-
-    private void ChangeVote()
-    {
+        numVotes += upvote ? 1 : -1;
+        favour.Value -= upvote ? upvoteCost : downvoteCost;
         upvoteCost = getVoteCost(true, numVotes);
         downvoteCost = getVoteCost(false, numVotes);
-
-        int totalVotes = numVotes;
-        OnVoteChange?.Invoke(ref totalVotes);
-        voteNumber.text = Mathf.Abs(totalVotes).ToString();
-
-        submitThumb.localScale = new Vector3(1, (totalVotes >= 0 ? 1f : -1f), 1);
-        submitButton.interactable = numVotes != 0;
-
-        noCost.text = downvoteCost < 0 ? $"+{-downvoteCost}" : $"{downvoteCost}";
-        noVote.interactable = downvoteCost <= favour || downvoteCost <= 0;
-
-        yesCost.text = upvoteCost < 0 ? $"+{-upvoteCost}" : $"{upvoteCost}";
-        yesVote.interactable = upvoteCost <= favour || upvoteCost <= 0;
     }
 
     public void LockInVote()
