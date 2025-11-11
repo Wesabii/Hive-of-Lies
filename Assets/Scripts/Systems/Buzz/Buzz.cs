@@ -287,17 +287,17 @@ public class Buzz : GamePhase
 
         if (!playersByConnection.Value.TryGetValue(conn, out HivePlayer ply)) return;
 
-        int cost = ply.NextUpvoteCost;
+        //int cost = ply.NextUpvoteCost;
 
-        if (ply.Favour < cost && cost > 0) return;
+        //if (ply.Favour < cost && cost > 0) return;
 
-        ply.NumVotes++;
+        //ply.NumVotes++;
 
-        ply.Favour.Value -= cost;
+        //ply.Favour.Value -= cost;
 
-        ply.NextDownvoteCost.Value = TeamLeaderVote.CalculateDownvoteCost(ply.NumVotes);
+        //ply.NextDownvoteCost.Value = TeamLeaderVote.CalculateDownvoteCost(ply.NumVotes);
 
-        ply.NextUpvoteCost.Value = TeamLeaderVote.CalculateUpvoteCost(ply.NumVotes);
+        //ply.NextUpvoteCost.Value = TeamLeaderVote.CalculateUpvoteCost(ply.NumVotes);
     }
 
     [Server]
@@ -307,17 +307,17 @@ public class Buzz : GamePhase
 
         if (!playersByConnection.Value.TryGetValue(conn, out HivePlayer ply)) return;
 
-        int cost = ply.NextDownvoteCost;
+        //int cost = ply.NextDownvoteCost;
 
-        if (ply.Favour < cost && cost > 0) return;
+        //if (ply.Favour < cost && cost > 0) return;
 
-        ply.NumVotes--;
+        //ply.NumVotes--;
 
-        ply.Favour.Value -= cost;
+        //ply.Favour.Value -= cost;
 
-        ply.NextUpvoteCost.Value = TeamLeaderVote.CalculateUpvoteCost(ply.NumVotes);
+        //ply.NextUpvoteCost.Value = TeamLeaderVote.CalculateUpvoteCost(ply.NumVotes);
 
-        ply.NextDownvoteCost.Value = TeamLeaderVote.CalculateDownvoteCost(ply.NumVotes);
+        //ply.NextDownvoteCost.Value = TeamLeaderVote.CalculateDownvoteCost(ply.NumVotes);
     }
 
     [Server]
@@ -328,16 +328,16 @@ public class Buzz : GamePhase
         //If the player shouldn't be able to vote, don't let them.
         if (!CanVote(ply)) return;
         
-        voteTotal.Value += ply.NumVotes;
-        playerVotes.Add(new PlayerVote
-        {
-            ply = ply,
-            votes = ply.NumVotes
-        });
+        //voteTotal.Value += ply.NumVotes;
+        //playerVotes.Add(new PlayerVote
+        //{
+        //    ply = ply,
+        //    votes = ply.NumVotes
+        //});
 
-        ply.NumVotes.Value = 0;
-        ply.NextUpvoteCost.Value = 0;
-        ply.NextDownvoteCost.Value = 0;
+        //ply.NumVotes.Value = 0;
+        //ply.NextUpvoteCost.Value = 0;
+        //ply.NextDownvoteCost.Value = 0;
 
         if (playerVotes.Count >= alivePlayers.Count - playersSelected.Count) OnVoteEnd();
     }
@@ -411,7 +411,7 @@ public class Buzz : GamePhase
 
         if (playersBuzzed.Contains(ply)) playersBuzzed.Remove(ply);
         //Otherwise the player casts a yes vote, and dies.
-        ply.NumVotes.Value = 1;
+        //ply.NumVotes.Value = 1;
         OnPlayerVoted(new NetworkConnectionToClient((int) ply.netId));
     }
 }

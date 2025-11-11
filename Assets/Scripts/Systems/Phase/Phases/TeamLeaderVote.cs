@@ -4,6 +4,8 @@ using UnityEngine;
 using Mirror;
 using UnityEngine.Events;
 using Steamworks;
+using System;
+using System.Linq;
 
 public class TeamLeaderVote : GamePhase
 {
@@ -19,8 +21,6 @@ public class TeamLeaderVote : GamePhase
     [Tooltip("The number of players in the game.")]
     [SerializeField] IntVariable playerCount;
 
-
-
     [Tooltip("Invoked when the vote begins")]
     [SerializeField] GameEvent voteBegin;
 
@@ -33,18 +33,35 @@ public class TeamLeaderVote : GamePhase
     [Tooltip("Invoked when there are more downvotes than upvotes")]
     [SerializeField] GameEvent voteFailed;
 
+    public delegate void ModifyVoteCost(ref int cost, HivePlayer ply);
+    public event ModifyVoteCost OnCalculateVoteCost;
+
+    public delegate void ModifyVotes(ref int votes, HivePlayer ply);
+    public event ModifyVotes OnVoteChange;
+
     [Tooltip("The UI associated with this game phase")]
     [SerializeField] VoteUI UI;
 
+    private Dictionary<HivePlayer, int> spentFavour = new();
+
     private void Start()
     {
-        playerCount.AfterVariableChanged += (val) => { if (Active && allVotes.Value.Count == playerCount) AllVotesReceived(); };
+        //If a wasp stings incorrectly without voting
+        playerCount.AfterVariableChanged += (val) => { if (Active && allVotes.Value.Count >= playerCount) AllVotesReceived(); };  
+    }
+
+    public override void OnStartClient()
+    {
+        UI.SetVoteCostCalculation(NextVoteCost);
+        UI.OnLockInVote += (votes) => VoteLockedIn(votes);
+        UI.OnVoteChange += (ref int votes) => OnVoteChange?.Invoke(ref votes, null);
     }
 
     public override void Begin()
     {
         allVotes.Clear();
         voteTotal.Value = 0;
+        spentFavour = new();
         voteBegin?.Invoke();
     }
 
@@ -59,49 +76,7 @@ public class TeamLeaderVote : GamePhase
             if (vote.ply == ply) return;
         }
 
-        UI.TargetEnableUI(conn);
-    }
-
-    [Server]
-    public void PlayerIncreasedVote(NetworkConnection conn)
-    {
-        if (!Active) return;
-
-        if (!playersByConnection.Value.TryGetValue(conn, out HivePlayer ply)) return;
-
-        int cost = ply.NextUpvoteCost;        
-
-        if (ply.Favour < cost && cost > 0) return;
-
-        ply.NumVotes++;
-
-        ply.Favour.Value -= cost;
-        ply.FavourSpentVoting += cost;
-
-        ply.NextDownvoteCost.Value = CalculateDownvoteCost(ply.NumVotes);
-
-        ply.NextUpvoteCost.Value = CalculateUpvoteCost(ply.NumVotes);
-    }
-
-    [Server]
-    public void PlayerDecreasedVote(NetworkConnection conn)
-    {
-        if (!Active) return;
-
-        if (!playersByConnection.Value.TryGetValue(conn, out HivePlayer ply)) return;
-
-        int cost = ply.NextDownvoteCost;
-
-        if (ply.Favour < cost && cost > 0) return;
-
-        ply.NumVotes--;
-
-        ply.Favour.Value -= cost;
-        ply.FavourSpentVoting += cost;
-
-        ply.NextUpvoteCost.Value = CalculateUpvoteCost(ply.NumVotes);
-
-        ply.NextDownvoteCost.Value = CalculateDownvoteCost(ply.NumVotes);
+        //UI.TargetEnableUI(conn);
     }
 
     /// <summary>
@@ -109,29 +84,43 @@ public class TeamLeaderVote : GamePhase
     /// </summary>
     /// <param name="ply">The player that voted</param>
     /// <param name="vote">How many votes the player sent</param>
-    [Server]
-    public void VoteLockedIn(NetworkConnection conn)
+    [Command(requiresAuthority = false)]
+    public void VoteLockedIn(int votes, NetworkConnectionToClient conn = null)
     {
         if (!Active) return;
+        if (!playersByConnection.Value.TryGetValue(conn, out HivePlayer ply)) return;
+        if (allVotes.Value.Any(vote => vote.ply == ply)) return;
 
-        playersByConnection.Value.TryGetValue(conn, out HivePlayer ply);
+        int voteCost = 0;
+        bool upvote = votes >= 0;
+        //Calculate cost based on unmodified votes first (clicks of the vote button)
+        for (int i = 1; i < Math.Abs(votes); i++)
+        {
+            int cost = voteCost + NextVoteCost(upvote, i - 1);
+            //Only cast as many votes as you are able to afford
+            if (cost > ply.Favour)
+            {
+                votes = upvote ? i - 1 : 1 - i;
+                break;
+            }
+            voteCost = cost;
+        }
+        ply.Favour.Value -= voteCost;
+        spentFavour.Add(ply, voteCost);
 
-        voteTotal.Value += ply.NumVotes;
+        //Modify vote total before adding
+        OnVoteChange?.Invoke(ref votes, ply);
+        voteTotal.Value += votes;
         allVotes.Add(new PlayerVote()
         {
             ply = ply,
-            votes = ply.NumVotes
+            votes = votes,
         });
 
-        //Invoke the player voted event
         onPlayerVoted?.Invoke();
 
-        ply.NumVotes.Value = 0;
-        ply.NextDownvoteCost.Value = 0;
-        ply.NextUpvoteCost.Value = 0;
-
         //If we have received a vote from everyone
-        if (allVotes.Value.Count == playerCount) AllVotesReceived();
+        if (allVotes.Value.Count >= playerCount) AllVotesReceived();
     }
 
     [Server]
@@ -139,55 +128,44 @@ public class TeamLeaderVote : GamePhase
     {
         //Invoke the all players voted event
         onAllPlayersVoted?.Invoke();
+        bool success = voteTotal > 0;
 
-        //If the vote was successful
-        if (voteTotal > 0)
+        foreach (PlayerVote vote in allVotes)
         {
-            foreach (PlayerVote vote in allVotes)
-            {
-                //If the player spent favour voting no, refund their downvotes
-                RefundVotes(vote.ply, vote.votes < 0);
-            }
+            //Refund all votes opposite to the result
+            if ((vote.votes > 0) == success) continue;
+            RefundVotes(vote.ply);
+        }
 
-            End();
+        if (success) End();
+        else voteFailed?.Invoke();
+    }
+
+    void RefundVotes(HivePlayer ply)
+    {
+        if (!spentFavour.TryGetValue(ply, out int cost)) return;
+        ply.Favour.Value += cost;
+    }
+
+    public int NextVoteCost(bool upvote, int numVotes)
+    {
+        return NextVoteCost(upvote, numVotes, null);
+    }
+
+    public int NextVoteCost(bool upvote, int numVotes, HivePlayer ply)
+    {
+        int cost;
+        if (upvote)
+        {
+            cost = numVotes >= 0 ? numVotes : (numVotes + 1);
         }
         else
         {
-            foreach (PlayerVote vote in allVotes)
-            {
-                //If the player spent favour voting yes, refund their downvotes
-                RefundVotes(vote.ply, vote.votes > 0);
-            }
-
-            //Back to standing for TeamLeader
-            voteFailed?.Invoke();
+            cost = numVotes <= 0 ? -numVotes : (1 - numVotes);
         }
-    }
 
-    void RefundVotes(HivePlayer ply, bool shouldRefund)
-    {
-        if (shouldRefund) ply.Favour.Value += ply.FavourSpentVoting;
-        ply.FavourSpentVoting = 0;
-    }
-
-    /// <summary>
-    /// Calculate the costs of the next up vote
-    /// </summary>
-    /// <param name="numVotes"></param>
-    /// <returns></returns>
-    public static int CalculateUpvoteCost(int numVotes)
-    {
-        return numVotes >= 0 ? 1 * numVotes : 1 * (numVotes + 1);
-    }
-
-    /// <summary>
-    /// Calculate the costs of the next down vote
-    /// </summary>
-    /// <param name="numVotes"></param>
-    /// <returns></returns>
-    public static int CalculateDownvoteCost(int numVotes)
-    {
-        return numVotes > 0 ? -1 * (numVotes-1) : -1 * numVotes;
+        OnCalculateVoteCost?.Invoke(ref cost, ply);
+        return cost;
     }
 }
 

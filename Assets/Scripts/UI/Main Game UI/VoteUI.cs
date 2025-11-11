@@ -2,11 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-using Mirror;
 using Steamworks;
 using UnityEngine.UI;
+using System;
 
-public class VoteUI : NetworkBehaviour
+public class VoteUI : MonoBehaviour
 {
     #region CLIENT
     [SerializeField] TMP_Text voteNumber;
@@ -20,137 +20,85 @@ public class VoteUI : NetworkBehaviour
 
     [SerializeField] GameObject voteUI;
 
+    private int upvoteCost;
+    private int downvoteCost;
+    private int numVotes;
+
+    public delegate int VoteCostCalculation(bool isUpvote, int numVotes);
+    private VoteCostCalculation getVoteCost;
+
+    public event Action<int> OnLockInVote;
+
+    public delegate void ModifyVotes(ref int numVotes);
+    public event ModifyVotes OnVoteChange;
+
     [Tooltip("The amount of favour the local player has")]
     [SerializeField] IntVariable favour;
-
-    [Tooltip("How many votes the local player has placed")]
-    [SerializeField] IntVariable numVotes;
 
     [Tooltip("Whether this player is alive")]
     [SerializeField] BoolVariable alive;
     #endregion
 
-    #region SERVER
-    [Tooltip("Invoked when a player increases their vote")]
-    [SerializeField] NetworkingEvent increasedVote;
-
-    [Tooltip("Invoked when a player decreases their vote")]
-    [SerializeField] NetworkingEvent decreasedVote;
-
-    [Tooltip("Invoked when a player locks in their vote")]
-    [SerializeField] NetworkingEvent lockedIn;
-
-    [Tooltip("All players in the game")]
-    [SerializeField] HivePlayerSet allPlayers;
-    #endregion
-
-    [Server]
-    public void AfterSetup()
-    {
-        foreach (HivePlayer ply in allPlayers.Value)
-        {
-            ply.NextUpvoteCost.AfterVariableChanged += (val) => ReceiveUpvoteCost(ply.connectionToClient, val);
-            ply.NextDownvoteCost.AfterVariableChanged += (val) => ReceiveDownvoteCost(ply.connectionToClient, val);
-            ply.NumVotes.AfterVariableChanged += (val) => ReceiveNumVotes(ply.connectionToClient, val);
-        }
-    }
-
     /// <summary>
     /// Called when the vote starts
     /// </summary>
     /// <param name="msg"></param>
-    [ClientRpc]
     public void VoteStarted()
     {
         if (!alive) return;
         voteUI.SetActive(true);
-        numVotes.Value = 0;
-    }
-
-    /// <summary>
-    /// Give a specific player the option to vote
-    /// </summary>
-    /// <param name="conn"></param>
-    [TargetRpc]
-    public void GiveVote(NetworkConnection conn)
-    {
-        if (!alive) return;
-        voteUI.SetActive(true);
-        numVotes.Value = 0;
-    }
-
-    [TargetRpc]
-    public void TargetEnableUI(NetworkConnection conn)
-    {
-        voteUI.SetActive(true);
+        numVotes = 0;
     }
 
     /// <summary>
     /// Called when a player increases their vote (upvotes)
     /// </summary>
-    [Client]
     public void IncreaseVote()
     {
-        PlayerIncreasedVote();
-    }
+        numVotes++;
+        favour.Value -= upvoteCost;
 
-    [Command(requiresAuthority = false)]
-    void PlayerIncreasedVote(NetworkConnectionToClient conn = null)
-    {
-        increasedVote?.Invoke(conn);
-    }
-
-    [TargetRpc]
-    void ReceiveUpvoteCost(NetworkConnection conn, int cost)
-    {
-        yesCost.text = cost < 0 ? $"+{-cost}" : cost.ToString();
-
-        yesVote.interactable = cost <= favour || cost <= 0;
+        ChangeVote();
     }
 
     /// <summary>
     /// Called when a player deceases their vote (downvotes)
     /// </summary>
-    [Client]
     public void DecreaseVote()
     {
-        PlayerDecreasedVote();
+        numVotes--;
+        favour.Value -= downvoteCost;
+
+        ChangeVote();
     }
 
-    [Command(requiresAuthority = false)]
-    void PlayerDecreasedVote(NetworkConnectionToClient conn = null)
+    private void ChangeVote()
     {
-        decreasedVote?.Invoke(conn);
+        upvoteCost = getVoteCost(true, numVotes);
+        downvoteCost = getVoteCost(false, numVotes);
+
+        int totalVotes = numVotes;
+        OnVoteChange?.Invoke(ref totalVotes);
+        voteNumber.text = Mathf.Abs(totalVotes).ToString();
+
+        submitThumb.localScale = new Vector3(1, (totalVotes >= 0 ? 1f : -1f), 1);
+        submitButton.interactable = numVotes != 0;
+
+        noCost.text = downvoteCost < 0 ? $"+{-downvoteCost}" : $"{downvoteCost}";
+        noVote.interactable = downvoteCost <= favour || downvoteCost <= 0;
+
+        yesCost.text = upvoteCost < 0 ? $"+{-upvoteCost}" : $"{upvoteCost}";
+        yesVote.interactable = upvoteCost <= favour || upvoteCost <= 0;
     }
 
-    [TargetRpc]
-    void ReceiveDownvoteCost(NetworkConnection conn, int cost)
-    {
-        noCost.text = cost < 0 ? $"+{-cost}" : cost.ToString();
-
-        noVote.interactable = cost <= favour || cost <= 0;
-    }
-
-    [TargetRpc]
-    void ReceiveNumVotes(NetworkConnection conn, int num)
-    {
-        voteNumber.text = Mathf.Abs(num).ToString();
-
-        float y = num >= 0 ? 1f : -1f;
-        submitThumb.localScale = new Vector3(1, y, 1); 
-        submitButton.interactable = num != 0;
-    }
-
-    [Client]
     public void LockInVote()
     {
         voteUI.SetActive(false);
-        OnPlayerLockedIn();
+        OnLockInVote?.Invoke(numVotes);
     }
 
-    [Command(requiresAuthority = false)]
-    void OnPlayerLockedIn(NetworkConnectionToClient conn = null)
+    public void SetVoteCostCalculation(VoteCostCalculation calc)
     {
-        lockedIn?.Invoke(conn);
+        getVoteCost = calc;
     }
 }

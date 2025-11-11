@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7301012588054530216}
   - component: {fileID: -5047457108725929900}
   - component: {fileID: -2894645362504328990}
+  - component: {fileID: 5503939707804903507}
   m_Layer: 0
   m_Name: Votes Doubled
   m_TagString: Untagged
@@ -25,13 +26,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7578572990359515094}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &-5047457108725929900
 MonoBehaviour:
@@ -66,3 +67,32 @@ MonoBehaviour:
   syncInterval: 0.1
   active: 1
   multiplier: 2
+--- !u!114 &5503939707804903507
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7578572990359515094}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e6b591ba95bdc09459c199d5932d1d6b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GamePhaseEventListener
+  Events:
+  - {fileID: 11400000, guid: 6eb546c2c14c76344a785c4514b792ad, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: -2894645362504328990}
+        m_TargetAssemblyTypeName: VotesMultiplied, Assembly-CSharp
+        m_MethodName: RegisterPhase
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2

@@ -1,30 +1,32 @@
-using System.Collections;
-using System.Collections.Generic;
+using Mirror;
 using UnityEngine;
 
 public class VotesMultiplied : RoleAbility
 {
     [SerializeField] int multiplier;
-    protected override void OnRoleGiven()
+    private TeamLeaderVote vote;
+
+    [Server]
+    public void RegisterPhase(GamePhase phase)
     {
-        Owner.NumVotes.OnVariableChanged +=  NumVotesChanged;
+        if (vote != null) return;
+        if (phase is not TeamLeaderVote) return;
+        vote = phase as TeamLeaderVote;
+        vote.OnVoteChange += NumVotesChanged;
+        if (isClient) return; //Prevent the host from registering twice
+        RegisterPhaseClient(Owner.connectionToClient, vote);
     }
 
-    void NumVotesChanged(int oldVal, ref int newVal)
+    [TargetRpc]
+    private void RegisterPhaseClient(NetworkConnection conn, TeamLeaderVote phase)
     {
-        //If votes are being reset back to 0, we shouldn't have a problem here.
-        if (newVal == 0) return;
-        //Reduced vote
-        if (oldVal > newVal) newVal -= multiplier - 1;
-        //Increased vote
-        if (newVal > oldVal) newVal += multiplier - 1;
+        phase.OnVoteChange += NumVotesChanged;
+    }
 
-        int val = newVal;
-
-        StartCoroutine(Coroutines.Delay(() =>
-        {
-            Owner.NextUpvoteCost.Value = TeamLeaderVote.CalculateUpvoteCost(val / multiplier);
-            Owner.NextDownvoteCost.Value = TeamLeaderVote.CalculateDownvoteCost(val / multiplier);
-        }));
+    private void NumVotesChanged(ref int votes, HivePlayer ply)
+    {
+        //If the player is null, we assume whoever receives this is the right person
+        if (ply != Owner && ply != null) return;
+        votes *= multiplier;
     }
 }

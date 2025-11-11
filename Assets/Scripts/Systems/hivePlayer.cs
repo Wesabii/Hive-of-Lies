@@ -44,29 +44,9 @@ public class HivePlayer : NetworkBehaviour
     public IntVariable NextDrawCost;
 
     /// <summary>
-    /// How much favour it costs to place another upvote
-    /// </summary>
-    public IntVariable NextUpvoteCost;
-
-    /// <summary>
-    /// How much favour it costs to place another upvote
-    /// </summary>
-    public IntVariable NextDownvoteCost;
-
-    /// <summary>
-    /// How much favour this player has spent on votes this round
-    /// </summary>
-    public int FavourSpentVoting;
-
-    /// <summary>
     /// How much favour it costs to stand for Team Leader
     /// </summary>
     public IntVariable NextStandCost;
-
-    /// <summary>
-    /// How many votes this player is currently deciding to give
-    /// </summary>
-    public IntVariable NumVotes;
 
     /// <summary>
     /// The players deck of cards
@@ -123,10 +103,7 @@ public class HivePlayer : NetworkBehaviour
         Favour = ScriptableObject.CreateInstance<IntVariable>();
         Role = ScriptableObject.CreateInstance<RoleVariable>();
         NextDrawCost = ScriptableObject.CreateInstance<IntVariable>();
-        NextUpvoteCost = ScriptableObject.CreateInstance<IntVariable>();
-        NextDownvoteCost = ScriptableObject.CreateInstance<IntVariable>();
         NextStandCost = ScriptableObject.CreateInstance<IntVariable>();
-        NumVotes = ScriptableObject.CreateInstance<IntVariable>();
         Deck = ScriptableObject.CreateInstance<DeckVariable>();
         NumDraws = ScriptableObject.CreateInstance<IntVariable>();
         RedrawsLeft = ScriptableObject.CreateInstance<IntVariable>();
