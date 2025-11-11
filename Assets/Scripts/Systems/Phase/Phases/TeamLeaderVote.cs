@@ -94,13 +94,13 @@ public class TeamLeaderVote : GamePhase
         int voteCost = 0;
         bool upvote = votes >= 0;
         //Calculate cost based on unmodified votes first (clicks of the vote button)
-        for (int i = 1; i < Math.Abs(votes); i++)
+        for (int i = 0; i < Math.Abs(votes); i++)
         {
-            int cost = voteCost + NextVoteCost(upvote, i - 1);
+            int cost = voteCost + NextVoteCost(upvote, i);
             //Only cast as many votes as you are able to afford
             if (cost > ply.Favour)
             {
-                votes = upvote ? i - 1 : 1 - i;
+                votes = upvote ? i : - i;
                 break;
             }
             voteCost = cost;
