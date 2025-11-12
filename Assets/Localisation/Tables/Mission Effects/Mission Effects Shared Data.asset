@@ -36,7 +36,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 428684677120
-    m_Key: victoryPoint
+    m_Key: beePoint
     m_Metadata:
       m_Items: []
   - m_Id: 1018869387264
@@ -81,6 +81,10 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 5495441401122816
     m_Key: noEffect
+    m_Metadata:
+      m_Items: []
+  - m_Id: 293585015494201344
+    m_Key: waspPoint
     m_Metadata:
       m_Items: []
   m_Metadata:

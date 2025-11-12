@@ -45,13 +45,9 @@ MonoBehaviour:
       m_Items:
       - rid: 2288630729750085638
   - m_Id: 428684677120
-    m_Localized: '{plus_minus}{num} {point_name}
-
-      <i><alpha=#88><size=25>{team_pl}
-      win at {point.Value} {point_name_2}'
+    m_Localized: Mission Success
     m_Metadata:
-      m_Items:
-      - rid: 2288630729750085638
+      m_Items: []
   - m_Id: 1018869387264
     m_Localized: '{investigate} a player'
     m_Metadata:
@@ -102,10 +98,27 @@ MonoBehaviour:
     m_Localized: No effect
     m_Metadata:
       m_Items: []
+  - m_Id: 293585015494201344
+    m_Localized: Mission Fail
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds:
     - rid: 2288630729750085638
       type: {class: SmartFormatTag, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
       data:
-        m_Entries: 0010591902000000001099aa0e00000000109967200000000010591b2c0000000010192857000000001099cf6300000000109953b30000000010d97000010000001099a80a010000001099d31801000000105939ed00000000105902a15313000010d9d7ea531300
+        m_Entries: 
+        m_SharedEntries:
+        - id: 9015201792
+        - id: 62991699968
+        - id: 139177037824
+        - id: 189437382656
+        - id: 374334885888
+        - id: 770201686016
+        - id: 1101404901376
+        - id: 1145289904128
+        - id: 1206140866560
+        - id: 1018869387264
+        - id: 5439975551733760
+        - id: 5440292666281984
