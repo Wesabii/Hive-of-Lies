@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d999dbdde9bed8458229c463c9972c8, type: 3}
   m_Name: Bee Role Choices
   m_EditorClassIdentifier: 
-  initialValue: 2
-  currentValue: 2
+  initialValue: 3
+  currentValue: 3
   Persistent: 1
   server: 0
   client: 0
