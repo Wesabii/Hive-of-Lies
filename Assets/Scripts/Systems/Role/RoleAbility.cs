@@ -34,8 +34,13 @@ public class RoleAbility : NetworkBehaviour
             OnRoleGiven();
         }
     }
-
     #endregion
 
     protected virtual void OnRoleGiven() { }
+
+    public bool IsOwner(HivePlayer ply)
+    {
+        if (ply != null) return ply == owner;
+        return owner.isLocalPlayer;
+    }
 }
