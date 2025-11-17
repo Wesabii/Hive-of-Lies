@@ -25,8 +25,7 @@ public class DrawCostCapped : RoleAbility
 
     private void ModifyCalculation(HivePlayer ply, int numDraws, ref int cost)
     {
-        //If the player is null, we assume whoever receives this is the right person
-        if (ply != Owner && ply != null) return;
+        if (!IsOwner(ply)) return;
         cost = Mathf.Min(maxCost, cost);
     }
 }

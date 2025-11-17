@@ -25,8 +25,7 @@ public class VotesMultiplied : RoleAbility
 
     private void NumVotesChanged(ref int votes, HivePlayer ply)
     {
-        //If the player is null, we assume whoever receives this is the right person
-        if (ply != Owner && ply != null) return;
+        if (!IsOwner(ply)) return;
         votes *= multiplier;
     }
 }
