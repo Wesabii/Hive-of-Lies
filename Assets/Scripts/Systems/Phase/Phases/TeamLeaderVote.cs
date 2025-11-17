@@ -63,6 +63,13 @@ public class TeamLeaderVote : GamePhase
         voteTotal.Value = 0;
         spentFavour = new();
         voteBegin?.Invoke();
+        OpenUI();
+    }
+
+    [ClientRpc]
+    private void OpenUI()
+    {
+        UI.VoteStarted();
     }
 
     public void OnServerConnected(NetworkConnection conn)
