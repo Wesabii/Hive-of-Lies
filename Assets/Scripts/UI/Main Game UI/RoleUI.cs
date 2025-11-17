@@ -193,7 +193,7 @@ public class RolePickedEvent : Unity.Services.Analytics.Event
         PlayerCount = playerCount;
     }
     public string RoleName { set { SetParameter("roleName", value); } }
-    public Team Team { set { SetParameter("playerCount", value.ToString()); } }
+    public Team Team { set { SetParameter("team", value.ToString()); } }
     public int Favour { set { SetParameter("favour", value); } }
     public int PlayerCount { set { SetParameter("playerCount", value); } }
 }
