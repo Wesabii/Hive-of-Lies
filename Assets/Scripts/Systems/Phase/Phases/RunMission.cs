@@ -55,7 +55,6 @@ public class RunMission : GamePhase
 
     public void EndMission()
     {
-        Debug.Log("Mission should be ending now");
         completedMissions.Add(currentMission.Value);
         mission.Active = false;
 
